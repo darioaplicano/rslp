@@ -1,0 +1,13 @@
+.form-element {
+    display:block;
+    width: 100%;
+}
+.content {
+    margin-top: 50px;
+}
+#page-title{
+    text-align: center;
+}
+button {
+    margin-top:5px;
+}
