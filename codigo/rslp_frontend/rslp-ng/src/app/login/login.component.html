@@ -1,0 +1,19 @@
+<mat-grid-list cols="3" class="content">
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile id="loginForm">  
+    <form>
+      <h1 id="page-title" class="mat-h1">Identificación:</h1>
+      <mat-form-field class="form-group form-element">
+        <input matInput type="text" class="form-control" id="username" placeholder="Nombre de usuario">
+      </mat-form-field>
+
+      <mat-form-field class="form-group form-element">
+          <input matInput type="password" class="form-control" id="password" placeholder="Contraseña">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" class="form-element">Entrar</button>
+      <button mat-button color="primary" class="form-element">Registrarse</button>
+    </form>
+  </mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+</mat-grid-list>
