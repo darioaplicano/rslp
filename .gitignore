@@ -1,2 +1,5 @@
 /codigo/rslp_backend/nbproject/private/
 /codigo/rslp_frontend/rslp-ng/nbproject/private/
+/codigo/rslp_backend/node_modules/
+/codigo/rslp_frontend/rslp-ng/node_modules/
+/codigo/rslp_backend/rslp-REST/node_modules
