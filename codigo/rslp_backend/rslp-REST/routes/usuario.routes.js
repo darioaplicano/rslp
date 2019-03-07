@@ -3,8 +3,10 @@ var router = express.Router();
 const usuario = require('../controllers/usuario.controller.js');
 
 /* GET usuarios. */
-router.get('/', usuario.findAll);
-router.post('/', usuario.create);
-router.get('/:userid', usuario.findOne);
+router.post('/', usuario.create);           //C
+router.get('/', usuario.findAll);           //R(all)
+router.get('/:userid', usuario.findOne);    //R(one)
+router.put('/:userid', usuario.update);     //U
+router.delete('/:userid', usuario.delete);  //D
 
 module.exports = router;
