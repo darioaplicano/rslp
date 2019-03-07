@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const UsuarioSchema = mongoose.Schema({
-    nickname: String,
-    correo: String,
+    nickname: {type: String, index: {unique: true}},
+    correo: {type: String, index: {unique: true}},
     contrasena: String,
     imagen: String
 }, {
