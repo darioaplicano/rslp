@@ -31,6 +31,7 @@ app.use('/', indexRouter);
 app.use('/usuario', usersRouter);
 app.use('/sigue', seguirRouter);
 app.use('/contenido', contentsRouter);
+app.use('/comentar', newCommentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
