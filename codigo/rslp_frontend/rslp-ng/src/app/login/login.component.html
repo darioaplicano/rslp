@@ -7,17 +7,19 @@
         <input matInput type="text" class="form-control" id="nickname"
         required
         [(ngModel)]="model.nickname" name="nickname" placeholder="Nombre de usuario">
+        <mat-error>Campo no puede estar vacío</mat-error>
       </mat-form-field>
 
       <mat-form-field class="form-group form-element">
           <input matInput type="password" class="form-control" id="contrasena"
           required
           [(ngModel)]="model.contrasena" name="contrasena" placeholder="Contraseña">
+          <mat-error>Campo no puede estar vacío</mat-error>
       </mat-form-field>
 
       <button mat-raised-button color="primary" class="form-element"  type="submit" [disabled]="!loginForm.form.valid">Entrar</button>
-      <button mat-button color="primary" class="form-element">Registrarse</button>
-    </form>
+      <button mat-button color="primary" class="form-element" routerLink="/registro">Registrarse</button>
+    </form>   
   </mat-grid-tile>
   <mat-grid-tile></mat-grid-tile>
 

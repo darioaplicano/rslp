@@ -21,7 +21,23 @@ export class DataService {
     }
 
     public getUsuarios(): Observable<Usuario> {
-      return this.http.get<Usuario>("http://localhost:3000/usuario")
+      return this.http.get<Usuario>(this.actionUrl+"/usuario")
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+    }
+
+    public getUsuario(nickname:string): Observable<Usuario> {
+      return this.http.get<Usuario>(this.actionUrl+"/usuario/"+nickname)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+    }
+
+    public createUsuario(nuevo: Usuario): Observable<Usuario> {
+      return this.http.post<Usuario>(this.actionUrl+"/usuario", nuevo)
       .pipe(
         retry(1),
         catchError(this.handleError)
