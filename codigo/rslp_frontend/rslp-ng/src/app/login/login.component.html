@@ -16,4 +16,12 @@
     </form>
   </mat-grid-tile>
   <mat-grid-tile></mat-grid-tile>
+
+  <ul *ngFor="let usuario of usuarios">
+    <li>{{usuario._id}}</li>
+    <li>{{usuario.nickname}}</li>
+    <li>{{usuario.contrasena}}</li>
+    <li>{{usuario.correo}}</li>
+    <li>{{usuario.imagen}}</li>
+  </ul>
 </mat-grid-list>
