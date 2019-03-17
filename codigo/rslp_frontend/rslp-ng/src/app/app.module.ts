@@ -12,6 +12,8 @@ import {MatGridListModule} from '@angular/material/grid-list'
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MainComponent } from './main/main.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DataService } from './data.service';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,10 @@ import { MainComponent } from './main/main.component';
     MatFormFieldModule,
     MatInputModule,
     MatGridListModule,
+    HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
