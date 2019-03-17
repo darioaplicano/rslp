@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/usuario.routes');
@@ -16,6 +17,7 @@ mongoose.Promise = global.Promise;
 var uri = "mongodb+srv://admin:admin@rslp-p0upv.gcp.mongodb.net/rslp?retryWrites=true";
 
 var app = express();
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
