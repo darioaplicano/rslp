@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Usuario } from '../modelos/usuario';
-import { FormGroup } from '@angular/forms';
-import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,6 +23,21 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.usuarioService.getUsuario(this.model.nickname).subscribe((data:{}) => {
+      let datalength = Object.keys(data).length;
+      if(datalength > 0){
+        console.log(data[0].contrasena);
+        if(this.model.contrasena == data[0].contrasena){
+          console.log("LOGIN");
+        }
+        else {
+          console.log("PASSWORD ERR");
+        }
+      }
+      else{
+        console.log(this.model.nickname +" no encontrado.")
+      }
+    })
     console.log("submitted: "+this.model.nickname+" "+this.model.contrasena);
   }
 
