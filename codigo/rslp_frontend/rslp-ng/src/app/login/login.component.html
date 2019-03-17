@@ -1,17 +1,21 @@
 <mat-grid-list cols="3" class="content">
   <mat-grid-tile></mat-grid-tile>
   <mat-grid-tile id="loginForm">  
-    <form>
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
       <h1 id="page-title" class="mat-h1">Identificación:</h1>
       <mat-form-field class="form-group form-element">
-        <input matInput type="text" class="form-control" id="username" placeholder="Nombre de usuario">
+        <input matInput type="text" class="form-control" id="nickname"
+        required
+        [(ngModel)]="model.nickname" name="nickname" placeholder="Nombre de usuario">
       </mat-form-field>
 
       <mat-form-field class="form-group form-element">
-          <input matInput type="password" class="form-control" id="password" placeholder="Contraseña">
+          <input matInput type="password" class="form-control" id="contrasena"
+          required
+          [(ngModel)]="model.contrasena" name="contrasena" placeholder="Contraseña">
       </mat-form-field>
 
-      <button mat-raised-button color="primary" class="form-element">Entrar</button>
+      <button mat-raised-button color="primary" class="form-element"  type="submit" [disabled]="!loginForm.form.valid">Entrar</button>
       <button mat-button color="primary" class="form-element">Registrarse</button>
     </form>
   </mat-grid-tile>
