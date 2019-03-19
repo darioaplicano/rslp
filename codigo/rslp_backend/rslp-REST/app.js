@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/usuario.routes');
 var seguirRouter = require('./routes/sigue.routes');
 var contentsRouter = require('./routes/contenido.routes');
+var newCommentRouter = require('./routes/comentar.routes');
 
 const mongoose = require('mongoose');
 
