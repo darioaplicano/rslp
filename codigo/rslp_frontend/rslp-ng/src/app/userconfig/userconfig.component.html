@@ -1,0 +1,32 @@
+<div class="content">
+  <form (ngSubmit)="onSubmit()" #registryForm="ngForm">
+    <h1 id="page-title" class="mat-h1">Editar datos personales:</h1>
+    <mat-form-field class="form-group form-element">
+      <label>Nombre de usuario:</label>
+      <input matInput type="text" class="form-control" id="nickname"
+      required name="nickname" value={{model.nickname}}>
+      <mat-error>Campo no puede estar vacío</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-group form-element">
+      <label>Correo:</label>
+      <input matInput type="email" class="form-control" id="correo"
+      required pattern=".+@.+\..+" name="correo" value={{model.correo}}>
+      <mat-error>E-mail no válido</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="form-group form-element">
+    <label>Nueva contraseña</label>
+    <input matInput type="password" class="form-control" id="contrasena"
+    name="contrasenaNew">
+  </mat-form-field>
+
+
+    <button mat-raised-button color="primary" class="form-element"  type="submit" [disabled]="!registryForm.form.valid">Crear Usuario</button>
+  </form>   
+
+<mat-divider></mat-divider>
+
+<button id="delete-btn" mat-stroked-button color="warn">Eliminar Cuenta</button>
+
+</div>
