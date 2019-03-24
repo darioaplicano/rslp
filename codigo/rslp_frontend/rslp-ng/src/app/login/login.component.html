@@ -1,27 +1,23 @@
-<mat-grid-list cols="3" class="content">
-  <mat-grid-tile></mat-grid-tile>
-  <mat-grid-tile id="loginForm">  
-    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-      <h1 id="page-title" class="mat-h1">Identificación:</h1>
-      <mat-form-field class="form-group form-element">
-        <input matInput type="text" class="form-control" id="nickname"
+<div class="content">
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <h1 id="page-title" class="mat-h1">Identificación:</h1>
+    <mat-form-field class="form-group form-element">
+      <input matInput type="text" class="form-control" id="nickname"
+      required
+      [(ngModel)]="model.nickname" name="nickname" placeholder="Nombre de usuario">
+      <mat-error>Campo no puede estar vacío</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-group form-element">
+        <input matInput type="password" class="form-control" id="contrasena"
         required
-        [(ngModel)]="model.nickname" name="nickname" placeholder="Nombre de usuario">
+        [(ngModel)]="model.contrasena" name="contrasena" placeholder="Contraseña">
         <mat-error>Campo no puede estar vacío</mat-error>
-      </mat-form-field>
+    </mat-form-field>
 
-      <mat-form-field class="form-group form-element">
-          <input matInput type="password" class="form-control" id="contrasena"
-          required
-          [(ngModel)]="model.contrasena" name="contrasena" placeholder="Contraseña">
-          <mat-error>Campo no puede estar vacío</mat-error>
-      </mat-form-field>
-
-      <button mat-raised-button color="primary" class="form-element"  type="submit" [disabled]="!loginForm.form.valid">Entrar</button>
-      <button mat-button color="primary" class="form-element" routerLink="/registro">Registrarse</button>
-    </form>   
-  </mat-grid-tile>
-  <mat-grid-tile></mat-grid-tile>
+    <button mat-raised-button color="primary" class="form-element"  type="submit" [disabled]="!loginForm.form.valid">Entrar</button>
+    <button mat-button color="primary" class="form-element" routerLink="/registro">Registrarse</button>
+  </form>   
 
   <ul *ngFor="let usuario of usuarios">
     <li>{{usuario._id}}</li>
@@ -30,4 +26,4 @@
     <li>{{usuario.correo}}</li>
     <li>{{usuario.imagen}}</li>
   </ul>
-</mat-grid-list>
+</div>

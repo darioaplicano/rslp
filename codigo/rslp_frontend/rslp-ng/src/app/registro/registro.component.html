@@ -1,32 +1,28 @@
-<mat-grid-list cols="5" class="content">
-  <mat-grid-tile></mat-grid-tile>
-  <mat-grid-tile colspan="3">  
-    <form (ngSubmit)="onSubmit()" #registryForm="ngForm">
-      <h1 id="page-title" class="mat-h1">Registro:</h1>
-      <mat-form-field class="form-group form-element">
-        <input matInput type="text" class="form-control" id="nickname"
-        required
-        [(ngModel)]="model.nickname" name="nickname" placeholder="Nombre de usuario">
-        <mat-error>Campo no puede estar vacío</mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="form-group form-element">
-        <input matInput type="email" class="form-control" id="correo"
-        required
-        [(ngModel)]="model.correo" pattern=".+@.+\..+" name="correo" placeholder="Correo">
-        <mat-error>E-mail no válido</mat-error>
+<div class="content">
+  <form (ngSubmit)="onSubmit()" #registryForm="ngForm">
+    <h1 id="page-title" class="mat-h1">Registro:</h1>
+    <mat-form-field class="form-group form-element">
+      <input matInput type="text" class="form-control" id="nickname"
+      required
+      [(ngModel)]="model.nickname" name="nickname" placeholder="Nombre de usuario">
+      <mat-error>Campo no puede estar vacío</mat-error>
     </mat-form-field>
 
-      <mat-form-field class="form-group form-element">
-          <input matInput type="password" class="form-control" id="contrasena"
-          required
-          [(ngModel)]="model.contrasena" name="contrasena" placeholder="Contraseña">
-          <mat-error>Campo no puede estar vacío</mat-error>
-      </mat-form-field>
+    <mat-form-field class="form-group form-element">
+      <input matInput type="email" class="form-control" id="correo"
+      required
+      [(ngModel)]="model.correo" pattern=".+@.+\..+" name="correo" placeholder="Correo">
+      <mat-error>E-mail no válido</mat-error>
+  </mat-form-field>
+
+    <mat-form-field class="form-group form-element">
+        <input matInput type="password" class="form-control" id="contrasena"
+        required
+        [(ngModel)]="model.contrasena" name="contrasena" placeholder="Contraseña">
+        <mat-error>Campo no puede estar vacío</mat-error>
+    </mat-form-field>
 
 
-      <button mat-raised-button color="primary" class="form-element"  type="submit" [disabled]="!registryForm.form.valid">Crear Usuario</button>
-    </form>   
-  </mat-grid-tile>
-  <mat-grid-tile></mat-grid-tile>
-</mat-grid-list>
+    <button mat-raised-button color="primary" class="form-element"  type="submit" [disabled]="!registryForm.form.valid">Crear Usuario</button>
+  </form>   
+</div>
