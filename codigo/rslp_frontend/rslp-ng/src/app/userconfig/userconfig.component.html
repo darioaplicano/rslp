@@ -4,6 +4,7 @@
     <mat-form-field class="form-group form-element">
       <label>Nombre de usuario:</label>
       <input matInput type="text" class="form-control" id="nickname"
+      [(ngModel)]="model.nickname"
       required name="nickname" value={{model.nickname}}>
       <mat-error>Campo no puede estar vacío</mat-error>
     </mat-form-field>
@@ -11,22 +12,24 @@
     <mat-form-field class="form-group form-element">
       <label>Correo:</label>
       <input matInput type="email" class="form-control" id="correo"
+      [(ngModel)]="model.correo"
       required pattern=".+@.+\..+" name="correo" value={{model.correo}}>
       <mat-error>E-mail no válido</mat-error>
   </mat-form-field>
 
   <mat-form-field class="form-group form-element">
-    <label>Nueva contraseña</label>
+    <label>Contraseña:</label>
     <input matInput type="password" class="form-control" id="contrasena"
+    [(ngModel)]="model.contrasena" required
     name="contrasenaNew">
   </mat-form-field>
 
 
-    <button mat-raised-button color="primary" class="form-element"  type="submit" [disabled]="!registryForm.form.valid">Crear Usuario</button>
+    <button mat-raised-button color="primary" class="form-element"  type="submit" [disabled]="!registryForm.form.valid">Actualizar Usuario</button>
   </form>   
 
 <mat-divider></mat-divider>
 
-<button id="delete-btn" mat-stroked-button color="warn">Eliminar Cuenta</button>
+<button id="delete-btn" mat-stroked-button color="warn" (click)="delete()">Eliminar Cuenta</button>
 
 </div>

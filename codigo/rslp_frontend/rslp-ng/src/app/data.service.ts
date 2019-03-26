@@ -44,6 +44,22 @@ export class DataService {
       )
     }
 
+    public updateUsuario(updated: Usuario): Observable<Usuario> {
+      return this.http.put<Usuario>(this.actionUrl+"/usuario/"+updated._id, updated)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+    }
+
+    public deleteUsuario(deleted: Usuario) {
+      return this.http.delete<Usuario>(this.actionUrl+"/usuario/"+deleted._id)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+    }
+
   // Error handling 
   handleError(error) {
     let errorMessage = '';
