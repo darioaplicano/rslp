@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       if(datalength > 0){
         console.log(data[0].contrasena);
         if(this.model.contrasena == data[0].contrasena){
-          console.log("LOGIN");
+          localStorage.setItem('currentUser', JSON.stringify(data[0]));
         }
         else {
           console.log("PASSWORD ERR");

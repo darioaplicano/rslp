@@ -18,8 +18,7 @@ export class RegistroComponent implements OnInit {
 
   onSubmit() {
     this.usuarioService.createUsuario(this.model).subscribe((data:{}) => {
-      console.log("CREADO");
-      console.log("LOGIN");
+      localStorage.setItem('currentUser', JSON.stringify(data[0]))
     });
   }
 
