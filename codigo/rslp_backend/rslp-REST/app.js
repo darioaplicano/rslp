@@ -10,6 +10,8 @@ var usersRouter = require('./routes/usuario.routes');
 var seguirRouter = require('./routes/sigue.routes');
 var contentsRouter = require('./routes/contenido.routes');
 var newCommentRouter = require('./routes/comentar.routes');
+var seeReadRouter = requiere('./routers/verLeer.routes');
+var sawReadRouter = requiere('./routers/vistoLeido.routes');
 
 const mongoose = require('mongoose');
 
@@ -35,6 +37,8 @@ app.use('/usuario', usersRouter);
 app.use('/sigue', seguirRouter);
 app.use('/contenido', contentsRouter);
 app.use('/comentar', newCommentRouter);
+app.use('/verLeer',seeReadRouter);
+app.use('/vistoLeido',sawReadRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
