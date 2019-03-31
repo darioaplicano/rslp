@@ -3,8 +3,10 @@ var router = express.Router();
 const contenido = require('../controllers/contenido.controller.js');
 
 /* GET contenidos. */
-router.get('/', contenido.findAll);
-router.post('/', contenido.create);
-router.get('/:contenid', contenido.findOne);
+router.get('/', contenido.findAll); //R(all)
+router.post('/', contenido.create); //C
+router.get('/:contenid', contenido.findOne); //R(one)
+router.put('/:contenid', contenido.update);     //U
+router.delete('/:contenid', contenido.delete);  //D
 
-module.exports = router;
+module.exports = router; 
