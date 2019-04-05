@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from '../modelos/usuario';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private dataService:DataService) { }
+  user: Usuario;
+  seguidores: Array<Usuario>;
+  numFollowers = 0;
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem("currentUser"));
+    this.dataService.getSeguidores(this.user).subscribe((data: []) => {
+      this.seguidores = data;
+      console.log(this.seguidores)
+    })
   }
+
 
 }

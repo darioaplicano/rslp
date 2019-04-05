@@ -1,0 +1,41 @@
+.content {
+    margin-top: 50px;
+    width: 80%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+}
+#sidebar{
+    width: 40%;
+    float: left;
+    height:100%;
+}
+
+#main{
+    width: 50%;
+    float: right;
+    height:100%;
+    margin-left: 100px;
+}
+
+.userInfo {
+    display: flex;
+}
+
+.userpic {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    padding: 0 10px;
+}
+
+.lists{
+    display: block;
+    margin-top:10px;
+}
+
+.lists > button {
+    width: 100%;    
+    margin-top: 5px;
+}
