@@ -60,6 +60,22 @@ export class DataService {
       )
     }
 
+    public getSeguidores(usuario: Usuario) {
+      return this.http.get<Array<Usuario>>(this.actionUrl+"/sigue/"+usuario._id+"/seguidores")
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+    }
+
+    public getSeguidos(usuario: Usuario) {
+      return this.http.get<Array<Usuario>>(this.actionUrl+"/sigue/"+usuario._id+"/seguidos")
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+    }
+
   // Error handling 
   handleError(error) {
     let errorMessage = '';
