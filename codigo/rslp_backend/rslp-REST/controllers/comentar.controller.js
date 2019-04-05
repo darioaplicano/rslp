@@ -1,36 +1,123 @@
-const Comentar = require('../models/comentar.model.js');
+const Comment = require('../models/comentar.model.js');
 
-//Creating a comment
-app.post('/comentar', function(req, res){
-    console.log(req.body);
-    var newComment = {
-      nombre: req.body.name,
-      correo: req.body.email,
-      comentario: req.body.comment
-    }
-    pusher.trigger('flash-comments', 'new_comment', newComment);
-    res.json({ created: true });
-  });
+//CRUD:
 
-//Save comment in the database
-newComment.save()
-    .then(newComment => {
-        res.send(newComment);
+//Create:
+// Creates and writes a new comment to the database
+exports.create = (req, res) => {
+    // TODO: Validate request
+
+    // Create a comment
+    const comentar = new Comment({
+        valoracion: req.body.valoracion,
+        comentario: req.body.comentario,
+        usuario: req.body.userid,
+        contenido: req.body.contenid,
+    });
+
+    // Save comment in the database
+    comentar.save()
+    .then(comentar => {
+        res.send(comentar);
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Some error occurred while creating the comment."
         });
     });
+};
 
-//Read
-// Retrieve and return all comments from the database.
+//Read:
+// Retrieve and return all follows from the database.
 exports.findAll = (req, res) => {
-    Comentar.find()
-    .then(newComment => {
-        res.send(newComment);
+    Comment.find()
+    .populate('usuario')
+    .populate('contenido')
+    .then(follows => {
+        res.send(follows);
     }).catch(err => {
         res.status(500).send({
-            message: err.message || "Some error occurred while retrieving the comments."
+            message: err.message || "Some error occurred while retrieving follows."
+        });
+    });
+};
+
+// Retrieve and return comment with userid and contenid from the database.
+exports.findOne = (req, res) => {
+    Comment.findOne({usuario:req.params.userid, contenido:req.params.contenid})
+    .populate('usuario')
+    .populate('contenido')
+    .then(comentar => {
+        if(!comentar) {
+            return res.status(404).send({
+                message: "Comment no encontrado por id " + req.params.contenid+","+req.params.userid
+            });            
+        }
+        res.send(comentar);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving comment."
+        });
+    });
+};
+
+exports.findByUsuario = (req, res) => {
+    Comment.find({usuario:req.params.userid})
+    .populate('usuario')
+    .populate('contenido')
+    .then(comentar => {
+        if(!comentar) {
+            return res.status(404).send({
+                message: "Comment no encontrado por id " +req.params.userid
+            });            
+        }
+        res.send(comentar);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving comment."
+        });
+    });
+};
+
+exports.findByContenido = (req, res) => {
+    Comment.find({contenido:req.params.contenid})
+    .populate('usuario')
+    .populate('contenido')
+    .then(comentar => {
+        if(!comentar) {
+            return res.status(404).send({
+                message: "Comment no encontrado por id " + req.params.contenid
+            });            
+        }
+        res.send(comentar);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving comment."
+        });
+    });
+};
+
+// Update:
+// Update the fields of the comment with the given id.
+exports.update = (req, res) => {
+    // Find and update comment with the request body
+    Comment.findOneAndUpdate({usuario:req.params.userid, contenido:req.params.contenid}, {
+        valoracion: req.body.valoracion,
+        comentario: req.body.comentario,
+        usuario: req.body.userid,
+        contenido: req.body.contenid
+    }, {new: false})
+    .populate('usuario')
+    .populate('contenido')
+    .then(comment => {
+        if(!comment) {
+            return res.status(404).send({
+                message:"Comment no encontrado por id " + req.params.userid+","+req.params.contenid
+            });
+        }
+        res.send(comment);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while updating comment."
         });
     });
 };
@@ -39,17 +126,17 @@ exports.findAll = (req, res) => {
 // Delete comment with the given id
 exports.delete = (req, res) => {
     // Delete the comment
-    Comentar.findByIdAndDelete(req.params.newCommentid)
-    .then(newComment => {
-        if(!newComment) {
+    Comment.findOneAndDelete({usuario:req.params.userid, contenido:req.params.contenid})
+    .then(comment => {
+        if(!comment) {
             return res.status(404).send({
-                message: "Comentario no encontrado por id " + req.params.newCommentid
+                message: "Comment no encontrado por id " + req.params.userid+","+req.params.contenid
             });
         }
-        res.send({"message": "Comentario eliminado con éxito"});
+        res.send({"message": "Comment eliminado con éxito"});
     }).catch(err => {
         res.status(500).send({
-            message: err.message || "Some error occurred while deleting the comment."
+            message: err.message || "Some error occurred while deleting comment."
         });
     });
 };
