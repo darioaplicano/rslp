@@ -10,8 +10,8 @@ exports.create = (req, res) => {
 
     // Create a follow
     const seguir = new Follow({
-        seguidor: req.body.seguidorid,
-        seguido: req.body.seguidoid,
+        seguidor: req.body.seguidor,
+        seguido: req.body.seguido,
     });
 
     // Save follow in the database
