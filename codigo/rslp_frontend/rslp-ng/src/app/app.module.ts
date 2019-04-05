@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './data.service';
 import { RegistroComponent } from './registro/registro.component';
 import { UserconfigComponent } from './userconfig/userconfig.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { UserconfigComponent } from './userconfig/userconfig.component';
     LoginComponent,
     MainComponent,
     RegistroComponent,
-    UserconfigComponent
+    UserconfigComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,

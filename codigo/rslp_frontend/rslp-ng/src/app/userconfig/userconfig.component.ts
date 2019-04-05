@@ -19,10 +19,12 @@ export class UserconfigComponent implements OnInit {
 
   onSubmit() {
     //TODO: ask for password
-    console.log(this.model)
+    //TODO: check username/email doesn't already exist
+    //TODO: show feedback
     this.usuarioService.updateUsuario(this.model).subscribe((data:{}) => {
       console.log(data)
-      localStorage.setItem('currentUser', JSON.stringify(data))
+      localStorage.setItem('currentUser', JSON.stringify(data));
+      window.location.reload();
     });
   }
 
