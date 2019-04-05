@@ -6,13 +6,14 @@ import { MainComponent } from './main/main.component';
 import { AppComponent } from './app.component';
 import { RegistroComponent } from './registro/registro.component';
 import { UserconfigComponent } from './userconfig/userconfig.component';
+import { AuthGuardService } from './auth-guard.service';
 
 const routes: Routes = [
   { path: 'login', component:LoginComponent },
-  { path: 'main', component:MainComponent },
+  { path: 'home', component:MainComponent, canActivate:[AuthGuardService] },
   { path: 'registro', component:RegistroComponent },
-  { path: 'config', component:UserconfigComponent },
-  { path: '', component:MainComponent }
+  { path: 'config', component:UserconfigComponent, canActivate:[AuthGuardService] },
+  { path: '', component:MainComponent, canActivate:[AuthGuardService] }
 ]
 
 @NgModule({
