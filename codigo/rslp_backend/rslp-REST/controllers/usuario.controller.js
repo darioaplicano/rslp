@@ -58,7 +58,7 @@ exports.findAll = (req, res) => {
 
 // Retrieve and return user with id from the database.
 exports.findOne = (req, res) => {
-    Usuario.findById(req.params.userid)
+    Usuario.find({"nickname":req.params.nickname})
     .then(usuario => {
         if(!usuario) {
             return res.status(404).send({
