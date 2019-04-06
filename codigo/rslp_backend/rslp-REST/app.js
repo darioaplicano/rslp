@@ -9,9 +9,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/usuario.routes');
 var seguirRouter = require('./routes/sigue.routes');
 var contentsRouter = require('./routes/contenido.routes');
-var newCommentRouter = require('./routes/comentar.routes');
-var seeReadRouter = requiere('./routers/verLeer.routes');
-var sawReadRouter = requiere('./routers/vistoLeido.routes');
+//var newCommentRouter = require('./routes/comentar.routes');
+var seeReadRouter = require('./routes/verLeer.routes');
+var sawReadRouter = require('./routes/vistoLeido.routes');
 
 const mongoose = require('mongoose');
 
@@ -36,7 +36,7 @@ app.use('/', indexRouter);
 app.use('/usuario', usersRouter);
 app.use('/sigue', seguirRouter);
 app.use('/contenido', contentsRouter);
-app.use('/comentar', newCommentRouter);
+//app.use('/comentar', newCommentRouter);
 app.use('/verLeer',seeReadRouter);
 app.use('/vistoLeido',sawReadRouter);
 

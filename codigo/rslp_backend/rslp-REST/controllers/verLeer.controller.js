@@ -1,7 +1,7 @@
 const verLeer = require('../models/verLeer.model.js');
  
 //CRUD:
-
+ 
 //Create:
 // Creates and writes a new see or read to the database
 exports.create = (req, res) => {

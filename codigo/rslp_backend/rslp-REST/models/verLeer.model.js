@@ -6,7 +6,7 @@ const verLeerSchema = mongoose.Schema({
 }, {
     timestamps: true
 });
-
+ 
 verLeerSchema.index({usuario:1, contenido:1}, {unique: true});
 
 module.exports = mongoose.model('verLeer', verLeerSchema);
