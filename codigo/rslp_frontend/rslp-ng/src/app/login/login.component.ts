@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Usuario } from '../modelos/usuario';
+import { Router } from '@angular/router';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   usuarios: any = [];
   model = new Usuario();
-  constructor( private usuarioService: DataService) { }
+  constructor( private usuarioService: DataService, public router: Router) { }
 
   ngOnInit() {
     this.fetchAllUsers();
@@ -26,9 +28,9 @@ export class LoginComponent implements OnInit {
     this.usuarioService.getUsuario(this.model.nickname).subscribe((data:{}) => {
       let datalength = Object.keys(data).length;
       if(datalength > 0){
-        console.log(data[0].contrasena);
         if(this.model.contrasena == data[0].contrasena){
           localStorage.setItem('currentUser', JSON.stringify(data[0]));
+          this.router.navigate(['home']);
         }
         else {
           console.log("PASSWORD ERR");
@@ -37,8 +39,7 @@ export class LoginComponent implements OnInit {
       else{
         console.log(this.model.nickname +" no encontrado.")
       }
-    })
-    console.log("submitted: "+this.model.nickname+" "+this.model.contrasena);
+    });
   }
 
 }
