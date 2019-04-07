@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../modelos/usuario';
 import { DataService } from '../data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -11,14 +12,15 @@ export class RegistroComponent implements OnInit {
   
   model = new Usuario();
 
-  constructor(private usuarioService: DataService) { }
+  constructor(private usuarioService: DataService, public router: Router) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
     this.usuarioService.createUsuario(this.model).subscribe((data:{}) => {
-      localStorage.setItem('currentUser', JSON.stringify(data[0]))
+      localStorage.setItem('currentUser', JSON.stringify(data[0]));
+      this.router.navigate(['home']);
     });
   }
 
