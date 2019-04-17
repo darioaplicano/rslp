@@ -41,7 +41,7 @@ export class ListasPeliculasComponent implements OnInit {
     this.p2.genero="comedia";
     this.p2.imagen="https://upload.wikimedia.org/wikipedia/en/2/2f/Ghostbusters_%281984%29_theatrical_poster.png";
 
-    this.orSeenList=[this.p1,this.p2];
+    this.orSeenList=[this.p1,this.p2,this.p1,this.p2,this.p1,this.p2,this.p2,this.p1,this.p1,this.p1,this.p2];
 
     this.p2alt = {...this.p2};
     this.p2alt.recomendado=false;
