@@ -20,6 +20,13 @@ import { DataService } from './data.service';
 import { RegistroComponent } from './registro/registro.component';
 import { UserconfigComponent } from './userconfig/userconfig.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { ListasPeliculasComponent } from './listas-peliculas/listas-peliculas.component';
+import { ListasLibrosComponent } from './listas-libros/listas-libros.component';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -28,7 +35,9 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     MainComponent,
     RegistroComponent,
     UserconfigComponent,
-    NavBarComponent
+    NavBarComponent,
+    ListasPeliculasComponent,
+    ListasLibrosComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +52,11 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     AppRoutingModule,
     MatIconModule,
     MatDividerModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    MatListModule,
+    MatCardModule,
     FormsModule
   ],
   providers: [DataService],
