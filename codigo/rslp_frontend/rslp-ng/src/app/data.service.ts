@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from "rxjs/index";
 import { Usuario } from "./modelos/usuario";
 import { retry, catchError } from 'rxjs/operators';
+import { VistoLeido } from './modelos/vistoLeido';
+import { VerLeer } from './modelos/verLeer';
 
 
 @Injectable()
@@ -75,6 +77,24 @@ export class DataService {
         catchError(this.handleError)
       )
     }
+
+  // Visto leido
+  public getListaVistosLeidos(usuario: Usuario) {
+    return this.http.get<Array<VistoLeido>>(this.actionUrl+"/vistoLeido/"+usuario._id+"/contenidos")
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  // Ver leer
+  public getListaVerLeer(usuario: Usuario) {
+    return this.http.get<Array<VerLeer>>(this.actionUrl+"/verLeer/"+usuario._id+"/contenidos")
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
 
   // Error handling 
   handleError(error) {

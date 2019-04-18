@@ -41,25 +41,25 @@
       <h1 class="section-title" class="mat-h1">Películas vistas</h1>
       <h2 *ngIf="seenList.length==0" class="emptymsg mat-h2">Lista vacía</h2>
       <div class="list">
-        <mat-card *ngFor="let movie of seenList">
+        <mat-card *ngFor="let element of seenList">
           <mat-card-content>
-              <img class="moviepic" mat-card-md-image src="{{movie.imagen}}" />
+              <img class="moviepic" mat-card-md-image src="{{element.contenido.image}}" />
               <div>
-                <h4 class="mat-h4 movietitle">{{movie.titulo}}</h4>
+                <h4 class="mat-h4 movietitle">{{element.contenido.titule}}</h4>
               </div>
-              <mat-icon color="primary" *ngIf="movie.recomendado" class="recomended">star</mat-icon>
+              <mat-icon color="primary" *ngIf="element.recomienda" class="recomended">star</mat-icon>
           </mat-card-content>
         </mat-card>
       </div>
     </div>
-    <div id="seen">
+    <div *ngIf="!recomended" id="seen">
         <h1 class="section-title" class="mat-h1">Películas por ver</h1>
         <h2 *ngIf="toseeList.length==0" class="emptymsg mat-h2">Lista vacía</h2>
         <div class="list">
-          <mat-card *ngFor="let movie of toseeList">
+          <mat-card *ngFor="let element of toseeList">
             <mat-card-content>
-                <img class="moviepic" mat-card-md-image src="{{movie.imagen}}" />
-                <div><h4 class="mat-h4 movietitle">{{movie.titulo}}</h4></div>
+                <img class="moviepic" mat-card-md-image src="{{element.contenido.image}}" />
+                <div><h4 class="mat-h4 movietitle">{{element.contenido.titule}}</h4></div>
             </mat-card-content>
           </mat-card>
         </div>

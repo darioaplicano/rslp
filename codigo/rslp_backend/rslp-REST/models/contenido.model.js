@@ -6,7 +6,8 @@ const ContenidoSchema = mongoose.Schema({
     gender: String,
     synopsis: String,
     authorDirector: String,
-    image: String
+    image: String,
+    type: String,
 }, {
     timestamps: true
 });
