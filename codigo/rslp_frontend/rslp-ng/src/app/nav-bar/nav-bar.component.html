@@ -25,6 +25,10 @@
           <span style="padding-right:20px">Identificado como: {{user.nickname}}</span>            
         <mat-icon>settings</mat-icon>
       </button>
+      <button mat-button [routerLink]="[ '/perfil' ]">
+        Mi perfil
+        <mat-icon>face</mat-icon>
+      </button>
       <button mat-button (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>
         Cerrar sesión</button>
