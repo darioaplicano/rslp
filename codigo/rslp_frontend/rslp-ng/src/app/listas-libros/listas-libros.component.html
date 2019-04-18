@@ -1,3 +1,68 @@
-<p>
-  listas-libros works!
-</p>
+<div class="bar"><app-nav-bar></app-nav-bar></div>
+
+<div class="content">
+  <div id="side-bar">
+      <div class="wrap">
+          <div class="filters">
+            <h2 class="section-title" class="mat-h2">Filtros:</h2>
+            <mat-form-field class="form-group form-element">
+              <input matInput type="text" class="form-control" id="title"
+                  name="title" placeholder="Título"
+                  (keyup)="filter()"
+                  [(ngModel)]="title">
+            </mat-form-field>
+
+            <mat-form-field class="form-group form-element">
+                <label>Género:</label>
+                <mat-select class="form-control" id="genre" multiple
+                (keyup)="filter()"
+                [(ngModel)]="genre"
+                (selectionChange)="filter()">
+                  <mat-option *ngFor="let genre of genreList" [value]="genre">{{genre}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="form-group form-element">
+                <input matInput type="text" class="form-control" id="director"
+                    name="director" placeholder="Autor"
+                    [(ngModel)]="director"
+                    (keyup)="filter()">
+            </mat-form-field>
+
+            <mat-slide-toggle class="form-element" (change)="filter()" [(ngModel)]="recomended">
+              Sólo recomendados
+            </mat-slide-toggle>
+          </div>
+      </div>
+  </div>
+
+  <div id="main">
+    <div id="seen">
+      <h1 class="section-title" class="mat-h1">Libros leídos</h1>
+      <h2 *ngIf="seenList.length==0" class="emptymsg mat-h2">Lista vacía</h2>
+      <div class="list">
+        <mat-card *ngFor="let element of seenList">
+          <mat-card-content>
+              <img class="moviepic" mat-card-md-image src="{{element.contenido.image}}" />
+              <div>
+                <h4 class="mat-h4 movietitle">{{element.contenido.titule}}</h4>
+              </div>
+              <mat-icon color="primary" *ngIf="element.recomienda" class="recomended">star</mat-icon>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <div *ngIf="!recomended" id="seen">
+        <h1 class="section-title" class="mat-h1">Libros por leer</h1>
+        <h2 *ngIf="toseeList.length==0" class="emptymsg mat-h2">Lista vacía</h2>
+        <div class="list">
+          <mat-card *ngFor="let element of toseeList">
+            <mat-card-content>
+                <img class="moviepic" mat-card-md-image src="{{element.contenido.image}}" />
+                <div><h4 class="mat-h4 movietitle">{{element.contenido.titule}}</h4></div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+    </div>
+
+</div>
