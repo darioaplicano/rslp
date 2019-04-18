@@ -27,6 +27,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { PerfilComponent } from './perfil/perfil.component';
+import { ResenaComponent } from './resena/resena.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { MatCardModule } from '@angular/material/card';
     UserconfigComponent,
     NavBarComponent,
     ListasPeliculasComponent,
-    ListasLibrosComponent
+    ListasLibrosComponent,
+    PerfilComponent,
+    ResenaComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,8 @@ import { UserconfigComponent } from './userconfig/userconfig.component';
 import { AuthGuardService } from './auth-guard.service';
 import { ListasPeliculasComponent } from './listas-peliculas/listas-peliculas.component';
 import { ListasLibrosComponent } from './listas-libros/listas-libros.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { ResenaComponent } from './resena/resena.component';
 
 const routes: Routes = [
   { path: 'login', component:LoginComponent },
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'config', component:UserconfigComponent, canActivate:[AuthGuardService] },
   { path: 'listapelis', component:ListasPeliculasComponent, canActivate:[AuthGuardService] },
   { path: 'listalibros', component:ListasLibrosComponent, canActivate:[AuthGuardService] },
+  { path: 'perfil', component:PerfilComponent, canActivate:[AuthGuardService] },
+  { path: 'resena', component:ResenaComponent, canActivate:[AuthGuardService] },
   { path: '', component:MainComponent, canActivate:[AuthGuardService] }
 ]
 
