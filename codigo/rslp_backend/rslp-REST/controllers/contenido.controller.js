@@ -31,6 +31,16 @@ exports.create = (req, res) => {
             message: "El campo del autor o director está vacío."
         });
     }
+    if(!req.body.type) {
+        return res.status(400).send({
+            message: "El campo del tipo está vacío."
+        });
+    }
+    if(req.body.type != "movie" || req.body.type != "book"){
+        return res.status(400).send({
+            message: "El campo del tipo debe ser movie o book."
+        });
+    }
 
     // Create a Content
     const contenido = new Contenido({
@@ -40,6 +50,7 @@ exports.create = (req, res) => {
         synopsis: req.body.synopsis,
         authorDirector: req.body.authorDirector,
         image: req.body.image,
+        type: req.body.type,
     });
 
     //TODO: handle duplicate titule
@@ -96,6 +107,7 @@ exports.update = (req, res) => {
         synopsis: req.body.synopsis,
         authorDirector: req.body.authorDirector,
         image: req.body.image,
+        type: req.body.type,
     }, {new: false})
     .then(contenido => {
         if(!contenido) {
