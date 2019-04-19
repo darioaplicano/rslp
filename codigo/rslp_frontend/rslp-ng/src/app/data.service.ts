@@ -5,6 +5,8 @@ import { Usuario } from "./modelos/usuario";
 import { retry, catchError } from 'rxjs/operators';
 import { VistoLeido } from './modelos/vistoLeido';
 import { VerLeer } from './modelos/verLeer';
+import { Contenido } from './modelos/contenido';
+import { Resena } from './modelos/resena';
 
 
 @Injectable()
@@ -90,6 +92,15 @@ export class DataService {
   // Ver leer
   public getListaVerLeer(usuario: Usuario) {
     return this.http.get<Array<VerLeer>>(this.actionUrl+"/verLeer/"+usuario._id+"/contenidos")
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  // Ver resenas
+  public getResena(contenido: string) {
+    return this.http.get<Array<Resena>>(this.actionUrl+"/comentar/"+contenido+"/tcomentarios")
     .pipe(
       retry(1),
       catchError(this.handleError)
