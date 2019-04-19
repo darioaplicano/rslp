@@ -1,3 +1,43 @@
-<p>
-  resena works!
-</p>
+<div class="bar"><app-nav-bar></app-nav-bar></div>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<div class="container">
+  <div class="row">
+    <div>
+        <h2>{{titule}}</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2">
+      <div>
+          <img class="img-fluid img-thumbnail" src="{{image}}">
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div>
+        <p>Autor/Director: {{authorDirector}}</p>
+        <p>Genero: {{gender}}</p>
+        <p>Año: {{age}}</p>
+      </div>
+    </div>
+    <div class="col-sm-7">
+      <div>
+        {{synopsis}}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h3>Reseñas</h3>
+  </div>
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="form-group">
+          <textarea class="form-control" id="resena" rows="3"></textarea>
+        </div>
+    </div>
+    <div class="col-sm-3">
+      <p><button>Puntuar</button></p>
+      <p><button>Enviar</button></p>
+    </div>
+  </div>
+</div>
