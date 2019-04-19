@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Usuario } from '../modelos/usuario';
 import { DataService } from '../data.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DefaultRouteReuseStrategy } from '@angular/router/src/route_reuse_strategy';
+import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-userconfig',
@@ -10,29 +15,107 @@ import { DataService } from '../data.service';
 export class UserconfigComponent implements OnInit {
 
   model = new Usuario();
-  constructor( private usuarioService:DataService) { }
+  confirmation_passwd: string; 
+  original_passwd: string;
+  constructor( private usuarioService:DataService, public dialog: MatDialog, private snackBar: MatSnackBar, public router: Router) { }
 
   ngOnInit() {
     this.model = JSON.parse(localStorage.getItem("currentUser"));
-    console.log(this.model);
+    this.original_passwd = this.model.contrasena;
   }
 
-  onSubmit() {
-    //TODO: ask for password
-    //TODO: check username/email doesn't already exist
-    //TODO: show feedback
-    this.usuarioService.updateUsuario(this.model).subscribe((data:{}) => {
-      console.log(data)
-      localStorage.setItem('currentUser', JSON.stringify(data));
-      window.location.reload();
+  openDialog(){
+    const dialogRef = this.dialog.open(DialogoPasswd, {
+      width: '500px',
+      data:{passwd: ""}
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result!=null){
+        this.confirmation_passwd = result.passwd;
+        this.update(); 
+      }
+    });
+  }
+
+  update(){
+    if(this.confirmation_passwd == this.original_passwd){
+      this.usuarioService.updateUsuario(this.model).subscribe((data:{}) => {
+        localStorage.setItem('currentUser', JSON.stringify(this.model));
+        this.model = JSON.parse(localStorage.getItem("currentUser"));
+        this.original_passwd = this.model.contrasena;
+        this.snackBar.open('Datos actualizados', "Ok", {duration: 2000});
+      });
+    }
+    else{
+      this.openDialog();
+      this.snackBar.open('Contraseña incorrecta', "Ok");
+    }
   }
 
   delete() {
-    //TODO: ask for confirmation
-    this.usuarioService.deleteUsuario(this.model).subscribe(() => {
-      console.log("deleted")
-      localStorage.removeItem('currentUser')
+    const dialogRef = this.dialog.open(DialogoDelete, {
+      width: '500px',
+      data:{passwd: ""}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result!=null){
+        this.confirmation_passwd = result.passwd;
+        this.deleteUser();
+      }
     });
   }
+
+  
+  deleteUser(){
+    if(this.original_passwd==this.confirmation_passwd){
+      this.usuarioService.deleteUsuario(this.model).subscribe(() => {
+        localStorage.removeItem('currentUser')
+        this.router.navigate(['login']);
+      });
+    }
+    else{
+      this.delete();
+      this.snackBar.open('Contraseña incorrecta', "Ok");
+    }
+  }
+}
+
+export interface DialogData {
+  passwd: string;
+}
+
+@Component({
+  templateUrl: 'dialogo-passwd.html',
+  styleUrls: ['dialogo-passwd.css']
+})
+export class DialogoPasswd {
+
+  constructor(public dialogRef: MatDialogRef<DialogoPasswd>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+  onClickCancel(): void {
+    this.dialogRef.close();
+  }
+  clickOn():void {
+    this.dialogRef.close(this.data);
+  }
+}
+
+@Component({
+  templateUrl: 'dialogo-delete.html',
+  styleUrls: ['dialogo-passwd.css']
+})
+export class DialogoDelete {
+
+  constructor(public dialogRef: MatDialogRef<DialogoDelete>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+    onClickCancel(): void {
+      this.dialogRef.close();
+    }
+    clickOn():void {
+      this.dialogRef.close(this.data);
+    }
 }

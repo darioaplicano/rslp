@@ -25,9 +25,13 @@
     name="contrasenaNew">
   </mat-form-field>
 
-  <!--TODO: imagen-->
+  <mat-form-field class="form-group form-element">
+    <label>URL imagen:</label>
+    <input matInput type="text" class="form-control" id="imagen"
+      [(ngModel)]="model.imagen" name="imagen" value={{model.imagen}}>
+  </mat-form-field>
 
-    <button mat-raised-button color="primary" class="form-element"  type="submit" [disabled]="!registryForm.form.valid">Actualizar Usuario</button>
+    <button mat-raised-button color="primary" class="form-element" (click)="openDialog()" [disabled]="!registryForm.form.valid">Actualizar Usuario</button>
   </form>   
 
 <mat-divider></mat-divider>
