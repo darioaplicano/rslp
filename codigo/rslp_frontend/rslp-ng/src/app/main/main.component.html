@@ -7,7 +7,7 @@
                 <img class="userpic" src="{{user.imagen}}">
                 <div>
                     <div class="name">{{user.nickname}}</div>
-                    <div class="counter">{{seguidores.length}} seguidores</div>
+                    <div class="counter">{{numFollowers}} seguidores</div>
                 </div>
             </div>
             <div class="lists">
@@ -20,108 +20,26 @@
     <div id="main">
         <h1 id="page-title" class="mat-h1">Actividad reciente</h1>
         <div class="activity">
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
+            <mat-list>
+                <mat-list-item *ngFor="let ac of sortByDate(activity)">
+                    <span class="date">{{ ac.contenido.createdAt | date:'dd/MM/yy, H:mm' }}</span>
+                    <span *ngIf="ac.tipo=='VerLeer'" class="text">
+                        <span class="nickname">{{ac.contenido.usuario.nickname}}</span> añadió <span class="contenido">{{ac.contenido.contenido.titule}}</span> a su lista de 
+                        <span *ngIf="ac.contenido.contenido.type=='book'">libros por leer</span> 
+                        <span *ngIf="ac.contenido.contenido.type=='movie'">películas por ver</span>
+                        .
+                    </span>
+                    <span *ngIf="ac.tipo=='VistoLeido'"  class="text">
+                        <span class="nickname">{{ac.contenido.usuario.nickname}}</span> añadió <span class="contenido">{{ac.contenido.contenido.titule}}</span> a su lista de 
+                        <span *ngIf="ac.contenido.contenido.type=='book'">libros leídos</span> 
+                        <span *ngIf="ac.contenido.contenido.type=='movie'">películas vistas</span>
+                        .
+                    </span>
+                    <span *ngIf="ac.tipo=='Seguir'"  class="text">
+                            <span class="nickname">{{ac.contenido.seguidor.nickname}}</span> empezó a seguir a <span class="nickname">{{ac.contenido.seguido.nickname}}</span>.
+                    </span>
+                </mat-list-item>
+            </mat-list>
         </div>
     </div>
 
