@@ -59,6 +59,7 @@ export class PerfilComponent implements OnInit {
   }
 
   verContenido(contenido:Contenido){
+    localStorage.setItem("contenidoLS",JSON.stringify(contenido));
     localStorage.setItem('contenido._id', contenido._id);
     localStorage.setItem('contenido.titule', contenido.titule);
     localStorage.setItem('contenido.age', contenido.age);

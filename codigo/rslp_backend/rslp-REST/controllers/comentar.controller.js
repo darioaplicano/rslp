@@ -6,13 +6,34 @@ const Comment = require('../models/comentar.model.js');
 // Creates and writes a new comment to the database
 exports.create = (req, res) => {
     // TODO: Validate request
+    // Validate request
+    if(!req.body.valoracion) {
+        return res.status(400).send({
+            message: "La valoración no puede estar vacía"
+        });
+    }
+    if(!req.body.comentario) {
+        return res.status(400).send({
+            message: "El comentario no puede estar vacío"
+        });
+    }
+    if(!req.body.usuario) {
+        return res.status(400).send({
+            message: "El usuario ID no puede estar vacío"
+        });
+    }
+    if(!req.body.contenido) {
+        return res.status(400).send({
+            message: "El contenido ID no puede estar vacío"
+        });
+    }
 
     // Create a comment
     const comentar = new Comment({
         valoracion: req.body.valoracion,
         comentario: req.body.comentario,
-        usuario: req.body.userid,
-        contenido: req.body.contenid,
+        usuario: req.body.usuario,
+        contenido: req.body.contenido,
     });
 
     // Save comment in the database
