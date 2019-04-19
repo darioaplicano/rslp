@@ -3,6 +3,8 @@ import { Usuario } from '../modelos/usuario';
 import { DataService } from '../data.service';
 import { VistoLeido } from '../modelos/vistoLeido';
 import { VerLeer } from '../modelos/verLeer';
+import { Router } from '@angular/router';
+import { Contenido } from '../modelos/contenido';
 
 @Component({
   selector: 'app-perfil',
@@ -25,7 +27,7 @@ export class PerfilComponent implements OnInit {
   seenList:Array<VistoLeido> = [];
   toseeList:Array<VerLeer> = [];
 
-  constructor(private dataService:DataService) { }
+  constructor(private dataService:DataService, public router: Router) { }
   user: Usuario;
   seguidores: Array<Usuario>;
   numFollowers = 0;
@@ -56,6 +58,17 @@ export class PerfilComponent implements OnInit {
     this.genreList = this.seenList.map(el=>el.contenido.gender.split(",")).concat(this.toseeList.map(el=>el.contenido.gender.split(","))).reduce((acc, val) => acc.concat(val), []).filter(function(item, i, ar){ return ar.indexOf(item) === i; })
   }
 
+  verContenido(contenido:Contenido){
+    localStorage.setItem('contenido._id', contenido._id);
+    localStorage.setItem('contenido.titule', contenido.titule);
+    localStorage.setItem('contenido.age', contenido.age);
+    localStorage.setItem('contenido.gender', contenido.gender);
+    localStorage.setItem('contenido.synopsis', contenido.synopsis);
+    localStorage.setItem('contenido.authorDirector', contenido.authorDirector);
+    localStorage.setItem('contenido.image', contenido.image);
+    localStorage.setItem('contenido.type', contenido.type);
+    this.router.navigate(['resena']);
+  }
 
 }
 
