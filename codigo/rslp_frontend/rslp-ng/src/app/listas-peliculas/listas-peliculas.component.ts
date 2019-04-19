@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { VistoLeido } from '../modelos/vistoLeido';
 import { DataService } from '../data.service';
 import { VerLeer } from '../modelos/verLeer';
+import { Router } from '@angular/router';
+import { Contenido } from '../modelos/contenido';
 
 @Component({
   selector: 'app-listas-peliculas',
@@ -24,7 +26,7 @@ export class ListasPeliculasComponent implements OnInit {
   seenList:Array<VistoLeido> = [];
   toseeList:Array<VerLeer> = [];
 
-  constructor(private dataservice:DataService){}
+  constructor(private dataservice:DataService, public router: Router){}
 
   ngOnInit() {
     this.getLists();
@@ -70,5 +72,17 @@ export class ListasPeliculasComponent implements OnInit {
     )
 
     this.genreList = this.seenList.map(el=>el.contenido.gender.split(",")).concat(this.toseeList.map(el=>el.contenido.gender.split(","))).reduce((acc, val) => acc.concat(val), []).filter(function(item, i, ar){ return ar.indexOf(item) === i; });
+  }
+
+  verContenido(contenido:Contenido){
+    localStorage.setItem('contenido._id', contenido._id);
+    localStorage.setItem('contenido.titule', contenido.titule);
+    localStorage.setItem('contenido.age', contenido.age);
+    localStorage.setItem('contenido.gender', contenido.gender);
+    localStorage.setItem('contenido.synopsis', contenido.synopsis);
+    localStorage.setItem('contenido.authorDirector', contenido.authorDirector);
+    localStorage.setItem('contenido.image', contenido.image);
+    localStorage.setItem('contenido.type', contenido.type);
+    this.router.navigate(['resena']);
   }
 }
