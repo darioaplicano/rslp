@@ -6,7 +6,7 @@
     <div>
         <h2>{{titule}}</h2>
     </div>
-  </div>
+  </div> 
   <div class="row">
     <div class="col-sm-2">
       <div>
@@ -15,12 +15,13 @@
     </div>
     <div class="col-sm-3">
       <div>
-        <p>Autor/Director: {{authorDirector}}</p>
+        <p *ngIf="type=='movie'">Director: {{authorDirector}}</p>
+        <p *ngIf="type=='book'">Autor: {{authorDirector}}</p>
         <p>Genero: {{gender}}</p>
         <p>Año: {{age}}</p>
       </div>
     </div>
-    <div class="col-sm-7">
+    <div class="col-sm-5">
       <div>
         {{synopsis}}
       </div>
@@ -37,7 +38,25 @@
     </div>
     <div class="col-sm-3">
       <p><button>Puntuar</button></p>
-      <p><button>Enviar</button></p>
+      <p><button>Publicar</button></p>
     </div>
   </div>
+  <div class="row" *ngFor="let element of ListResena">
+    <div class="col-sm-3">
+      <div class="thumbnail">
+        <img class="img-fluid img-thumbnail" src={{element.usuario.imagen}}>
+      </div><!-- /thumbnail -->
+    </div><!-- /col-sm-1 -->
+    
+    <div class="col-sm-7">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong>{{element.usuario.nickname}}</strong> <span class="text-muted"> valoración {{element.valoracion}}/5</span>
+        </div>
+        <div class="panel-body bg-secondary text-white">
+          {{element.comentario}}
+        </div><!-- /panel-body -->
+      </div><!-- /panel panel-default -->
+    </div><!-- /col-sm-5 -->
+  </div><!-- /row -->
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { Contenido } from '../modelos/contenido';
+import { Resena } from '../modelos/resena'
 
 @Component({
   selector: 'app-resena',
@@ -18,23 +18,16 @@ export class ResenaComponent implements OnInit {
   image = localStorage.getItem('contenido.image');
   type = localStorage.getItem('contenido.type');
 
-  genreList = [];
-
-
-  title:string = "";
-  genre:Array<string> = [];
-  director:string = "";
-  recomended:boolean = false;
-  Content: Contenido;
+  ListResena:Array<Resena> = [];
 
   constructor(private dataservice:DataService) { }
 
   ngOnInit() {
-    this.getContent();
+    this.getResena();
   }
 
-  getContent(){
-    
+  getResena(){
+    this.dataservice.getResena(this._id).subscribe((d:Array<Resena>)=>{this.ListResena = d});
   }
 
 }
