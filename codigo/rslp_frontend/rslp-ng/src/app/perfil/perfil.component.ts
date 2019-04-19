@@ -58,8 +58,9 @@ export class PerfilComponent implements OnInit {
     this.genreList = this.seenList.map(el=>el.contenido.gender.split(",")).concat(this.toseeList.map(el=>el.contenido.gender.split(","))).reduce((acc, val) => acc.concat(val), []).filter(function(item, i, ar){ return ar.indexOf(item) === i; })
   }
 
-  verContenido(contenido:Contenido){
+  verContenido(contenido:Contenido, recomienda: string){
     localStorage.setItem("contenidoLS",JSON.stringify(contenido));
+    localStorage.setItem('recomienda', recomienda);
     localStorage.setItem('contenido._id', contenido._id);
     localStorage.setItem('contenido.titule', contenido.titule);
     localStorage.setItem('contenido.age', contenido.age);

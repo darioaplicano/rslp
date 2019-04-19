@@ -4,7 +4,21 @@
 <div class="container">
   <div class="row">
     <div>
-        <h2>{{titule}}</h2>
+        <h2>{{titule}}
+          <button type="button" class="btn btn-primary" *ngIf="recomienda" (click) ="recomendar()">★</button>
+          <button type="button" class="btn btn-light" *ngIf="!recomienda" (click) ="recomendar()">★</button>
+          <div class="dropdown show">
+            <button class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Lista
+            </button>
+          
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="#">Por ver</a>
+              <a class="dropdown-item" href="#">Visto</a>
+              <a class="dropdown-item" href="#">Ninguno</a>
+            </div>
+          </div>
+        </h2>
     </div>
   </div> 
   <div class="row">
@@ -21,7 +35,7 @@
         <p>Año: {{age}}</p>
       </div>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-7">
       <div>
         {{synopsis}}
       </div>
@@ -62,7 +76,7 @@
       </div><!-- /thumbnail -->
     </div><!-- /col-sm-1 -->
     
-    <div class="col-sm-7">
+    <div class="col-sm-8">
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>{{element.usuario.nickname}}</strong> <span class="text-muted"> valoración {{element.valoracion}}/5</span>
