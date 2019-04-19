@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-    <h1 class="appName">Aplicación</h1>
+    <h1 class="appName" routerLink="/home">Aplicación</h1>
     
     <div class="main-set" *ngIf="user">
         <button mat-button routerLink="/home">
@@ -20,14 +20,14 @@
 
       <span class="filling"></span>
       <div class="second-set" *ngIf="user">
-        
-      <button mat-button routerLink="/config">  
-          <span style="padding-right:20px">Identificado como: {{user.nickname}}</span>            
-        <mat-icon>settings</mat-icon>
-      </button>
+
       <button mat-button [routerLink]="[ '/perfil' ]">
-        Mi perfil
+        {{user.nickname}}
         <mat-icon>face</mat-icon>
+      </button>
+      <button mat-button routerLink="/config">  
+        Configuración      
+        <mat-icon>settings</mat-icon>
       </button>
       <button mat-button (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>
