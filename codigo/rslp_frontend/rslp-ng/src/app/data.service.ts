@@ -107,6 +107,14 @@ export class DataService {
     )
   }
 
+  public createResena(nuevo: Resena): Observable<Resena> {
+    return this.http.post<Resena>(this.actionUrl+"/comentar/", nuevo)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
   // Error handling 
   handleError(error) {
     let errorMessage = '';
