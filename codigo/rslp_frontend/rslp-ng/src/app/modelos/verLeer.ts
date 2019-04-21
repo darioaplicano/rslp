@@ -5,4 +5,5 @@ export class VerLeer {
     _id: string;
     usuario: Usuario;
     contenido: Contenido;
+    createdAt: Date;
 }
