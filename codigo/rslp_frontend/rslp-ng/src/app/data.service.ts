@@ -115,6 +115,14 @@ export class DataService {
     )
   }
 
+  public updateRecomendacion(updated: VistoLeido): Observable<VistoLeido> {
+    return this.http.put<VistoLeido>(this.actionUrl+"/vistoLeido/"+updated.usuario._id+"/"+updated.contenido._id+"/actualizar", updated)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
   // Error handling 
   handleError(error) {
     let errorMessage = '';

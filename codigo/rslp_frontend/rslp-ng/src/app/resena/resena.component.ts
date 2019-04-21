@@ -3,6 +3,7 @@ import { DataService } from '../data.service';
 import { Resena } from '../modelos/resena'
 import { Contenido } from '../modelos/contenido';
 import { Router } from '@angular/router';
+import { VistoLeido } from '../modelos/vistoLeido'
 
 @Component({
   selector: 'app-resena',
@@ -19,9 +20,11 @@ export class ResenaComponent implements OnInit {
   authorDirector = localStorage.getItem('contenido.authorDirector');
   image = localStorage.getItem('contenido.image');
   type = localStorage.getItem('contenido.type');
+  recomienda = (localStorage.getItem('recomienda') == "true");
 
   ListResena:Array<Resena> = [];
   newResena =  new Resena();
+  newVistoLeido = new VistoLeido();
 
 
   constructor(private dataservice:DataService, public router: Router) {}
@@ -42,6 +45,18 @@ export class ResenaComponent implements OnInit {
     });
     this.newResena.comentario = "";
     this.newResena.valoracion = "";
+  }
+
+  recomendar(){
+    this.newVistoLeido.contenido = JSON.parse(localStorage.getItem("contenidoLS"));
+    this.newVistoLeido.usuario = JSON.parse(localStorage.getItem("currentUser"));
+    this.newVistoLeido.recomienda = !this.recomienda;
+    this.dataservice.updateRecomendacion(this.newVistoLeido).subscribe((data:{})=>{
+      this.getResena();
+    });
+    this.newResena.comentario = "";
+    this.newResena.valoracion = "";
+    this.recomienda = !this.recomienda;
   }
 
 }

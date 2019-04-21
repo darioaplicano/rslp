@@ -100,9 +100,9 @@ exports.findByContenido = (req, res) => {
 // Update the fields of the vistoLeido with the given id.
 exports.update = (req, res) => {
     // Find and update vistoLeido with the request body
-    verLeer.findOneAndUpdate({usuario:req.params.userid, contenido:req.params.contenid}, {
-        usuario: req.body.userid,
-        contenido: req.body.contenid,
+    vistoLeido.findOneAndUpdate({usuario:req.params.usuario, contenido:req.params.contenido}, {
+        usuario: req.body.usuario,
+        contenido: req.body.contenido,
         recomienda: req.body.recomienda
     }, {new: false})
     .populate('usuario')
@@ -110,7 +110,7 @@ exports.update = (req, res) => {
     .then(verL => {
         if(!verL) {
             return res.status(404).send({
-                message: "vistoLeido no encontrado por id "  + req.params.userid+","+req.params.contenid
+                message: "vistoLeido no encontrado por id "  + req.params.usuario+","+req.params.contenido
             });
         }
         res.send(verL);
