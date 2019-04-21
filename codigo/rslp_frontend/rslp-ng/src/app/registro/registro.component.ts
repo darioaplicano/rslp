@@ -19,7 +19,7 @@ export class RegistroComponent implements OnInit {
 
   onSubmit() {
     this.usuarioService.createUsuario(this.model).subscribe((data:{}) => {
-      localStorage.setItem('currentUser', JSON.stringify(data[0]));
+      localStorage.setItem('currentUser', JSON.stringify(data));
       this.router.navigate(['home']);
     });
   }

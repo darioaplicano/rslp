@@ -18,7 +18,7 @@ import { MainComponent } from './main/main.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './data.service';
 import { RegistroComponent } from './registro/registro.component';
-import { UserconfigComponent } from './userconfig/userconfig.component';
+import { UserconfigComponent, DialogoPasswd, DialogoDelete } from './userconfig/userconfig.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ListasPeliculasComponent } from './listas-peliculas/listas-peliculas.component';
 import { ListasLibrosComponent } from './listas-libros/listas-libros.component';
@@ -29,6 +29,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { PerfilComponent } from './perfil/perfil.component';
 import { ResenaComponent } from './resena/resena.component';
+import { MatSnackBarModule } from '@angular/material';
+
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,8 @@ import { ResenaComponent } from './resena/resena.component';
     ListasPeliculasComponent,
     ListasLibrosComponent,
     PerfilComponent,
+    DialogoPasswd,
+    DialogoDelete,
     ResenaComponent
   ],
   imports: [
@@ -61,9 +66,11 @@ import { ResenaComponent } from './resena/resena.component';
     MatSlideToggleModule,
     MatListModule,
     MatCardModule,
+    MatDialogModule,
+    MatSnackBarModule,
     FormsModule
   ],
   providers: [DataService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,DialogoPasswd,DialogoDelete]
 })
 export class AppModule { }
