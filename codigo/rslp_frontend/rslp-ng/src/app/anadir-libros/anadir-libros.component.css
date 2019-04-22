@@ -1,0 +1,8 @@
+.addbox {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .addbox > * {
+    width: 100%;
+  }
