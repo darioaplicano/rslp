@@ -1,4 +1,4 @@
-export class Usuario | filter:searchText {
+export class Usuario {
     _id: string;
     nickname: string;
     correo: string;
