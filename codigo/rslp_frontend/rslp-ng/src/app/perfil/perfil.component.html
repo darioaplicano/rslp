@@ -15,14 +15,14 @@
         </div>
     </div>
   </div>
-
+  <!-- [routerLink]="[ '/resena', element.contenido._id, element.recomienda, 'true','visto']" -->
   <div id="main">
     <div id="seen">
       <h1 class="section-title" class="mat-h1">Películas vistas/Libros leídos</h1>
       <h2 *ngIf="seenList.length==0" class="emptymsg mat-h2">Lista vacía</h2>
       <div class="list">
         <mat-card *ngFor="let element of seenList">
-          <mat-card-content (click)="verContenido(element.contenido, element.recomienda, 'true','visto')">
+          <mat-card-content [routerLink]="[ '/resena', element.contenido._id, {'r': element.recomienda, 'v':true, 'l':'visto'}]">
               <img class="moviepic" mat-card-md-image src="{{element.contenido.image}}" />
               <div>
                 <h4 class="mat-h4 movietitle">{{element.contenido.titule}}</h4>
@@ -32,12 +32,13 @@
         </mat-card>
       </div>
     </div>
+    <!-- [routerLink]="[ '/resena', element.contenido._id,'false','false','porver']" -->
     <div *ngIf="!recomended" id="seen">
         <h1 class="section-title" class="mat-h1">Películas por ver/Libros por leer</h1>
         <h2 *ngIf="toseeList.length==0" class="emptymsg mat-h2">Lista vacía</h2>
         <div class="list">
           <mat-card *ngFor="let element of toseeList">
-            <mat-card-content (click)="verContenido(element.contenido,'false','false','porver')">
+            <mat-card-content [routerLink]="[ '/resena', element.contenido._id, {'r':false, 'v':false, 'l':'porver'}]">
                 <img class="moviepic" mat-card-md-image src="{{element.contenido.image}}" />
                 <div><h4 class="mat-h4 movietitle">{{element.contenido.titule}}</h4></div>
             </mat-card-content>
