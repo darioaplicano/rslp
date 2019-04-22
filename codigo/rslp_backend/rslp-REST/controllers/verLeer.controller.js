@@ -10,8 +10,8 @@ exports.create = (req, res) => {
 
     // Create a verLeer
     const vL = new verLeer({
-        usuario: req.body.userid,
-        contenido: req.body.contenid,
+        usuario: req.body.usuario,
+        contenido: req.body.contenido,
     });
 
     // Save verLeer in the database
@@ -123,11 +123,11 @@ exports.update = (req, res) => {
 // Delete verLeer with the given id
 exports.delete = (req, res) => {
     // Delete the verLeer
-    verLeer.findOneAndDelete({usuario:req.params.userid, contenido:req.params.contenid})
+    verLeer.findOneAndDelete({usuario:req.params.usuario, contenido:req.params.contenido})
     .then(verL => {
         if(!verL) {
             return res.status(404).send({
-                message: "verLeer no encontrado por id " + req.params.userid+","+req.params.contenid
+                message: "verLeer no encontrado por id " + req.params.usuario+","+req.params.contenido
             });
         }
         res.send({"message": "verLeer eliminado con éxito"});
