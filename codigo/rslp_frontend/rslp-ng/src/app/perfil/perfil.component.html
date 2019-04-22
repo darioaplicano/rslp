@@ -3,15 +3,15 @@
   <div id="side-bar">
     <div class="wrap">
         <div class="userInfo">
-            <img class="userpic" src="{{user.imagen}}">
+            <img class="userpic" src="{{userPerfil.imagen}}">
             <div>
-                <div class="name">{{user.nickname}}</div>
+                <div class="name">{{userPerfil.nickname}}</div>
                 <div class="counter">{{seguidores.length}} seguidores</div>
             </div>
         </div>
         <div class="lists">
-            <button mat-raised-button color="primary" [routerLink]="[ '/listapelis' ]">Lista de películas</button>
-            <button mat-raised-button color="primary" [routerLink]="[ '/listalibros' ]">Lista de libros</button>
+            <button mat-raised-button color="primary" *ngIf="validator" [routerLink]="[ '/listapelis' ]">Lista de películas</button>
+            <button mat-raised-button color="primary" *ngIf="validator" [routerLink]="[ '/listalibros' ]">Lista de libros</button>
         </div>
     </div>
   </div>
@@ -45,6 +45,5 @@
           </mat-card>
         </div>
     </div>
-
 </div>
 </div>
