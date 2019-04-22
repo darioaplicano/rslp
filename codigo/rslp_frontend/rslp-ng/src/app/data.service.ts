@@ -99,6 +99,14 @@ export class DataService {
   }
 
   // Data Services Alex
+  public getContenidoPorId(id: string){
+    return this.http.get<Contenido>(this.actionUrl+"/contenido/"+id)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
   public getResena(contenido: string) {
     return this.http.get<Array<Resena>>(this.actionUrl+"/comentar/"+contenido+"/tcomentarios")
     .pipe(

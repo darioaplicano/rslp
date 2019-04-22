@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Resena } from '../modelos/resena'
 import { Contenido } from '../modelos/contenido';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { VistoLeido } from '../modelos/vistoLeido'
 import { VerLeer } from '../modelos/verLeer';
 
@@ -13,17 +13,21 @@ import { VerLeer } from '../modelos/verLeer';
 })
 export class ResenaComponent implements OnInit {
 
-  _id = localStorage.getItem('contenido._id');
-  titule = localStorage.getItem('contenido.titule');
-  age = localStorage.getItem('contenido.age');
-  gender = localStorage.getItem('contenido.gender');
-  synopsis = localStorage.getItem('contenido.synopsis');
-  authorDirector = localStorage.getItem('contenido.authorDirector');
-  image = localStorage.getItem('contenido.image');
-  type = localStorage.getItem('contenido.type');
-  recomienda = (localStorage.getItem('recomienda') == "true");
-  verLeer = (localStorage.getItem('ver') == "true");
-  lista = localStorage.getItem('listado');
+  contenido:Contenido;
+
+  _id:string;
+  titule:string;
+  age:string;
+  gender:string;
+  synopsis:string;
+  authorDirector:string;
+  image:string;
+  type:string;
+  recomienda = this.route.snapshot.paramMap.get("r") == 'true';
+  verLeerB = this.route.snapshot.paramMap.get("v") == 'true';
+  verLeer: boolean;
+  vistoLeido:boolean = false;
+  lista = this.route.snapshot.paramMap.get("l"); 
 
   ListResena:Array<Resena> = [];
   newResena =  new Resena();
@@ -31,17 +35,47 @@ export class ResenaComponent implements OnInit {
   newVerLeer = new VerLeer();
 
 
-  constructor(private dataservice:DataService, public router: Router) {}
+  constructor(private dataservice:DataService, public router: Router, public route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.getResena();
-    this.newResena.contenido = JSON.parse(localStorage.getItem("contenidoLS"));
-    this.newResena.usuario = JSON.parse(localStorage.getItem("currentUser"));
-    this.newVistoLeido.contenido = JSON.parse(localStorage.getItem("contenidoLS"));
-    this.newVistoLeido.usuario = JSON.parse(localStorage.getItem("currentUser"));
-    this.newVistoLeido.recomienda = false;
-    this.newVerLeer.contenido = JSON.parse(localStorage.getItem("contenidoLS"));
-    this.newVerLeer.usuario = JSON.parse(localStorage.getItem("currentUser"));
+    //leemos el id del contenido de la url, y la buscamos en la base de datos
+    var id = this.route.snapshot.paramMap.get("idcontenido");
+    this.dataservice.getContenidoPorId(id).subscribe((data:Contenido)=>{
+      this.contenido = data;
+      this._id = this.contenido._id;
+      this.titule = this.contenido.titule;
+      this.age = this.contenido.age;
+      this.authorDirector = this.contenido.authorDirector;
+      this.gender = this.contenido.gender;
+      this.image = this.contenido.image;
+      this.type = this.contenido.type;
+      this.synopsis = this.contenido.synopsis;
+
+      var usuario = JSON.parse(localStorage.getItem("currentUser"));
+      //comprobamos si el contenido está en alguna lista del usuario
+      this.dataservice.getListaVerLeer(usuario).subscribe((data:Array<VerLeer>)=>{
+        this.verLeer = (data.map(d=>d.contenido._id).includes(this.contenido._id));
+      })
+      this.dataservice.getListaVistosLeidos(usuario).subscribe((data:Array<VistoLeido>)=>{
+        this.vistoLeido = (data.map(d=>d.contenido._id).includes(this.contenido._id));
+        /* if(this.vistoLeido){
+          //si está en vistoLeido, vemos si la recomienda
+          this.recomienda = data.filter(d=>d.contenido._id==this.contenido._id)[0].recomienda;
+        } */
+
+        this.getResena();
+        this.newResena.contenido = this.contenido;
+        this.newResena.usuario = usuario;
+        this.newVistoLeido.contenido = this.contenido
+        this.newVistoLeido.usuario = usuario;
+        this.newVistoLeido.recomienda = false;
+        this.newVerLeer.contenido = this.contenido;
+        this.newVerLeer.usuario = usuario;
+
+
+      })
+    })
+
   }
 
   getResena(){
@@ -81,7 +115,7 @@ export class ResenaComponent implements OnInit {
         });
       }
       this.lista = 'porver';
-      this.verLeer = false;
+      this.verLeerB = false;
     }else if(listado == 'visto'){
       if(this.lista == 'porver'){
         this.dataservice.deleteverLeer(this.newVerLeer).subscribe((data:{})=>{
@@ -95,7 +129,7 @@ export class ResenaComponent implements OnInit {
         });
       }
       this.lista = 'visto';
-      this.verLeer = true;
+      this.verLeerB = true;
     }else if(listado == 'ninguno'){
       if(this.lista == 'porver'){
         this.dataservice.deleteverLeer(this.newVerLeer).subscribe((data:{})=>{
@@ -107,7 +141,7 @@ export class ResenaComponent implements OnInit {
         });
       }
       this.lista = 'ninguno';
-      this.verLeer = false;
+      this.verLeerB = false;
     }
   }
 
