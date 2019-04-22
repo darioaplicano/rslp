@@ -23,10 +23,11 @@ export class ResenaComponent implements OnInit {
   authorDirector:string;
   image:string;
   type:string;
-  recomienda:boolean = false;
-  verLeer:boolean = false;  
+  recomienda = this.route.snapshot.paramMap.get("r") == 'true';
+  verLeerB = this.route.snapshot.paramMap.get("v") == 'true';
+  verLeer: boolean;
   vistoLeido:boolean = false;
-  lista = localStorage.getItem('listado');
+  lista = this.route.snapshot.paramMap.get("l"); 
 
   ListResena:Array<Resena> = [];
   newResena =  new Resena();
@@ -57,10 +58,10 @@ export class ResenaComponent implements OnInit {
       })
       this.dataservice.getListaVistosLeidos(usuario).subscribe((data:Array<VistoLeido>)=>{
         this.vistoLeido = (data.map(d=>d.contenido._id).includes(this.contenido._id));
-        if(this.vistoLeido){
+        /* if(this.vistoLeido){
           //si está en vistoLeido, vemos si la recomienda
           this.recomienda = data.filter(d=>d.contenido._id==this.contenido._id)[0].recomienda;
-        }
+        } */
 
         this.getResena();
         this.newResena.contenido = this.contenido;
@@ -114,7 +115,7 @@ export class ResenaComponent implements OnInit {
         });
       }
       this.lista = 'porver';
-      this.verLeer = false;
+      this.verLeerB = false;
     }else if(listado == 'visto'){
       if(this.lista == 'porver'){
         this.dataservice.deleteverLeer(this.newVerLeer).subscribe((data:{})=>{
@@ -128,7 +129,7 @@ export class ResenaComponent implements OnInit {
         });
       }
       this.lista = 'visto';
-      this.verLeer = true;
+      this.verLeerB = true;
     }else if(listado == 'ninguno'){
       if(this.lista == 'porver'){
         this.dataservice.deleteverLeer(this.newVerLeer).subscribe((data:{})=>{
@@ -140,7 +141,7 @@ export class ResenaComponent implements OnInit {
         });
       }
       this.lista = 'ninguno';
-      this.verLeer = false;
+      this.verLeerB = false;
     }
   }
 
