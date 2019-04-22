@@ -43,10 +43,10 @@ export class PerfilComponent implements OnInit {
   getLists(){
     this.dataService.getListaVistosLeidos(JSON.parse(localStorage.getItem("currentUser"))).subscribe(
       (d:Array<VistoLeido>)=>{
-        this.orSeenList=d.filter(e=>e.contenido.type=="movie")
+        this.orSeenList=d
         this.dataService.getListaVerLeer(JSON.parse(localStorage.getItem("currentUser"))).subscribe(
           (d2:Array<VerLeer>)=>{
-            this.orToseeList=d2.filter(e=>e.contenido.type=="movie")
+            this.orToseeList=d2
             this.refresh();
           })
       })
