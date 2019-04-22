@@ -21,7 +21,7 @@
       <span class="filling"></span>
       <div class="second-set" *ngIf="user">
 
-      <button mat-button [routerLink]="[ '/perfil' ]">
+      <button mat-button [routerLink]="[ '/perfil', user.nickname]">
         {{user.nickname}}
         <mat-icon>face</mat-icon>
       </button>

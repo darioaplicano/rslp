@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'config', component:UserconfigComponent, canActivate:[AuthGuardService] },
   { path: 'listapelis', component:ListasPeliculasComponent, canActivate:[AuthGuardService] },
   { path: 'listalibros', component:ListasLibrosComponent, canActivate:[AuthGuardService] },
-  { path: 'perfil', component:PerfilComponent, canActivate:[AuthGuardService] },
+  { path: 'perfil/:nickname', component:PerfilComponent, canActivate:[AuthGuardService] },
   { path: 'resena/:idcontenido', component:ResenaComponent, canActivate:[AuthGuardService] },
   { path: '', component:MainComponent, canActivate:[AuthGuardService] }
 ]

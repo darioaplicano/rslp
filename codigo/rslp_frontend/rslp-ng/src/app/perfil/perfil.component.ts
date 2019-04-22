@@ -3,7 +3,7 @@ import { Usuario } from '../modelos/usuario';
 import { DataService } from '../data.service';
 import { VistoLeido } from '../modelos/vistoLeido';
 import { VerLeer } from '../modelos/verLeer';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Contenido } from '../modelos/contenido';
 
 @Component({
@@ -27,24 +27,35 @@ export class PerfilComponent implements OnInit {
   seenList:Array<VistoLeido> = [];
   toseeList:Array<VerLeer> = [];
 
-  constructor(private dataService:DataService, public router: Router) { }
+  constructor(private dataService:DataService, public router: Router, public route: ActivatedRoute) { }
   user: Usuario;
+  userPerfil: Usuario;
   seguidores: Array<Usuario>;
+  validator: boolean;
   numFollowers = 0;
   ngOnInit() {
-    this.getLists();
     this.user = JSON.parse(localStorage.getItem("currentUser"));
-    this.dataService.getSeguidores(this.user).subscribe((data: []) => {
-      this.seguidores = data;
-      console.log(this.seguidores)
-    })
+    var userPerfil = this.route.snapshot.paramMap.get("nickname");
+    this.dataService.getUsuario(userPerfil).subscribe((data:{}) => {
+      this.userPerfil = data[0];
+
+      /* Verificar si el usuario del perfil es el mismo que ha iniciado sesión */
+      /* Para mostrar o no la lista de películas y libros */
+      this.validator = this.user._id == this.userPerfil._id;
+      this.getLists()
+
+      this.dataService.getSeguidores(this.userPerfil).subscribe((data: []) => {
+        this.seguidores = data;
+        console.log(this.seguidores)
+      });
+    });
   }
 
   getLists(){
-    this.dataService.getListaVistosLeidos(JSON.parse(localStorage.getItem("currentUser"))).subscribe(
+    this.dataService.getListaVistosLeidos(this.userPerfil).subscribe(
       (d:Array<VistoLeido>)=>{
         this.orSeenList=d
-        this.dataService.getListaVerLeer(JSON.parse(localStorage.getItem("currentUser"))).subscribe(
+        this.dataService.getListaVerLeer(this.userPerfil).subscribe(
           (d2:Array<VerLeer>)=>{
             this.orToseeList=d2
             this.refresh();
