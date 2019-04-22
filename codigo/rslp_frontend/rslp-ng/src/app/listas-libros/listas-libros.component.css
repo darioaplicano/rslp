@@ -118,3 +118,7 @@ mat-card-content:hover div{
 ::-webkit-scrollbar-thumb:hover {
     background: #5d6eca; 
 }
+
+mat-card {
+    cursor: pointer;
+}

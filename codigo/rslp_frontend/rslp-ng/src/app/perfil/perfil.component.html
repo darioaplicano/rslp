@@ -18,7 +18,7 @@
 
   <div id="main">
     <div id="seen">
-      <h1 class="section-title" class="mat-h1">Películas vistas</h1>
+      <h1 class="section-title" class="mat-h1">Películas vistas/Libros leídos</h1>
       <h2 *ngIf="seenList.length==0" class="emptymsg mat-h2">Lista vacía</h2>
       <div class="list">
         <mat-card *ngFor="let element of seenList">
@@ -33,7 +33,7 @@
       </div>
     </div>
     <div *ngIf="!recomended" id="seen">
-        <h1 class="section-title" class="mat-h1">Películas por ver</h1>
+        <h1 class="section-title" class="mat-h1">Películas por ver/Libros por leer</h1>
         <h2 *ngIf="toseeList.length==0" class="emptymsg mat-h2">Lista vacía</h2>
         <div class="list">
           <mat-card *ngFor="let element of toseeList">
