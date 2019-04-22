@@ -31,6 +31,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { ResenaComponent } from './resena/resena.component';
 import { MatSnackBarModule } from '@angular/material';
 
+
 import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
@@ -46,7 +47,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     PerfilComponent,
     DialogoPasswd,
     DialogoDelete,
-    ResenaComponent
+    ResenaComponent,
+    AnadirPeliculasComponent,
+    AnadirLibrosComponent,
   ],
   imports: [
     BrowserModule,
