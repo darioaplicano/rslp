@@ -5,6 +5,8 @@ import { VistoLeido } from '../modelos/vistoLeido';
 import { VerLeer } from '../modelos/verLeer';
 import { Seguir } from '../modelos/seguir';
 import { Activity } from '../modelos/activity';
+import { Contenido } from '../modelos/contenido';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -13,7 +15,7 @@ import { Activity } from '../modelos/activity';
 })
 export class MainComponent implements OnInit {
 
-  constructor(private dataService:DataService) { }
+  constructor(private dataService:DataService, public router: Router) { }
   user: Usuario;
   numFollowers = 0;
 
@@ -86,6 +88,19 @@ export class MainComponent implements OnInit {
 
       return new Date(b.contenido.createdAt).getTime() - new Date(d.contenido.createdAt).getTime();
     })
+  }
+
+  verContenido(contenido:Contenido){
+    localStorage.setItem("contenidoLS",JSON.stringify(contenido));
+    localStorage.setItem('contenido._id', contenido._id);
+    localStorage.setItem('contenido.titule', contenido.titule);
+    localStorage.setItem('contenido.age', contenido.age);
+    localStorage.setItem('contenido.gender', contenido.gender);
+    localStorage.setItem('contenido.synopsis', contenido.synopsis);
+    localStorage.setItem('contenido.authorDirector', contenido.authorDirector);
+    localStorage.setItem('contenido.image', contenido.image);
+    localStorage.setItem('contenido.type', contenido.type);
+    this.router.navigate(['resena']);
   }
 
 }
