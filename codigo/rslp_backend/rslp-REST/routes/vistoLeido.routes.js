@@ -9,7 +9,7 @@ router.get('/:userid/contenidos', vistoLeido.findByUsuario);        //R(by one i
 router.get('/:contenid/usuarios', vistoLeido.findByContenido);          //R(by other index)
 router.get('/:seguidorid/:seguidoid', vistoLeido.findOne);    //R(by both indexes)
 router.put('/:usuario/:contenido/actualizar', vistoLeido.update);     //U
-router.delete('/:seguidorid/:seguidoid', vistoLeido.delete);  //D
+router.delete('/:usuario/:contenido/eliminar', vistoLeido.delete);  //D
 
 module.exports = router;
  
