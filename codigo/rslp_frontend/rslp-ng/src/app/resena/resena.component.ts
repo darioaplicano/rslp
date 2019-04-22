@@ -23,13 +23,12 @@ export class ResenaComponent implements OnInit {
   authorDirector:string;
   image:string;
   type:string;
-  recomienda = this.route.snapshot.paramMap.get("r") == 'true';
-  verLeerB = this.route.snapshot.paramMap.get("v") == 'true';
-  verLeer: boolean;
-  vistoLeido:boolean = false;
-  lista = Number(this.route.snapshot.paramMap.get("l"));
+  recomienda = false;
+  vistoLeido = false;
+  verLeer = false;
+  lista;
   deviceObjects = [{name: 'Por ver/leer'}, {name: 'Visto/Leído'}, {name: 'Ninguno'}];
-  selectedDeviceObj = this.deviceObjects[this.lista];
+  selectedDeviceObj;
 
   ListResena:Array<Resena> = [];
   newResena =  new Resena();
@@ -60,11 +59,18 @@ export class ResenaComponent implements OnInit {
       })
       this.dataservice.getListaVistosLeidos(usuario).subscribe((data:Array<VistoLeido>)=>{
         this.vistoLeido = (data.map(d=>d.contenido._id).includes(this.contenido._id));
-        /* if(this.vistoLeido){
+        if(this.vistoLeido){
           //si está en vistoLeido, vemos si la recomienda
           this.recomienda = data.filter(d=>d.contenido._id==this.contenido._id)[0].recomienda;
-        } */
-
+          this.lista = 1;
+        }
+        if(this.verLeer){
+          this.lista = 0;
+        }
+        if(this.vistoLeido == this.verLeer){
+          this.lista = 2;
+        }
+        this.selectedDeviceObj = this.deviceObjects[this.lista];
         this.getResena();
         this.newResena.contenido = this.contenido;
         this.newResena.usuario = usuario;
@@ -124,7 +130,7 @@ export class ResenaComponent implements OnInit {
         });
       }
       this.lista = 0;
-      this.verLeerB = false;
+      this.vistoLeido = false;
     }else if(listado == this.deviceObjects[1]){
       if(this.lista == 0){
         this.dataservice.deleteverLeer(this.newVerLeer).subscribe((data:{})=>{
@@ -136,7 +142,7 @@ export class ResenaComponent implements OnInit {
         });
       }
       this.lista = 1;
-      this.verLeerB = true;
+      this.vistoLeido = true;
     }else if(listado == this.deviceObjects[2]){
       if(this.lista == 0){
         this.dataservice.deleteverLeer(this.newVerLeer).subscribe((data:{})=>{
@@ -146,7 +152,7 @@ export class ResenaComponent implements OnInit {
         });
       }
       this.lista = 2;
-      this.verLeerB = false;
+      this.vistoLeido = false;
     }
   }
 

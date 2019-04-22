@@ -5,8 +5,8 @@
   <div class="row">
     <div>
         <h2>{{titule}}
-          <button type="button" class="btn btn-primary" *ngIf="recomienda && verLeerB" (click) ="recomendar()">★</button>
-          <button type="button" class="btn btn-light" *ngIf="!recomienda && verLeerB" (click) ="recomendar()">★</button>
+          <button type="button" class="btn btn-primary" *ngIf="recomienda && vistoLeido" (click) ="recomendar()">★</button>
+          <button type="button" class="btn btn-light" *ngIf="!recomienda && vistoLeido" (click) ="recomendar()">★</button>
           <select class="btn btn-light" [ngModel]="selectedDeviceObj" (ngModelChange)="onChangeObj($event)" name="sel3">
             <option [ngValue]="i" *ngFor="let i of deviceObjects">{{i.name}}</option>
           </select>
