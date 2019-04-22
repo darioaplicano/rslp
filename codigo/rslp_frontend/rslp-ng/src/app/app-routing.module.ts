@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'listapelis', component:ListasPeliculasComponent, canActivate:[AuthGuardService] },
   { path: 'listalibros', component:ListasLibrosComponent, canActivate:[AuthGuardService] },
   { path: 'perfil', component:PerfilComponent, canActivate:[AuthGuardService] },
-  { path: 'resena', component:ResenaComponent, canActivate:[AuthGuardService] },
+  { path: 'resena/:idcontenido', component:ResenaComponent, canActivate:[AuthGuardService] },
   { path: '', component:MainComponent, canActivate:[AuthGuardService] }
 ]
 

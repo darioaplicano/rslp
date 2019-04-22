@@ -73,17 +73,4 @@ export class ListasPeliculasComponent implements OnInit {
 
     this.genreList = this.seenList.map(el=>el.contenido.gender.split(",")).concat(this.toseeList.map(el=>el.contenido.gender.split(","))).reduce((acc, val) => acc.concat(val), []).filter(function(item, i, ar){ return ar.indexOf(item) === i; });
   }
-
-  verContenido(contenido:Contenido){
-    localStorage.setItem("contenidoLS",JSON.stringify(contenido));
-    localStorage.setItem('contenido._id', contenido._id);
-    localStorage.setItem('contenido.titule', contenido.titule);
-    localStorage.setItem('contenido.age', contenido.age);
-    localStorage.setItem('contenido.gender', contenido.gender);
-    localStorage.setItem('contenido.synopsis', contenido.synopsis);
-    localStorage.setItem('contenido.authorDirector', contenido.authorDirector);
-    localStorage.setItem('contenido.image', contenido.image);
-    localStorage.setItem('contenido.type', contenido.type);
-    this.router.navigate(['resena']);
-  }
 }
