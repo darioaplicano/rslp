@@ -7,10 +7,8 @@
         <h2>{{titule}}
           <button type="button" class="btn btn-primary" *ngIf="recomienda && verLeerB" (click) ="recomendar()">★</button>
           <button type="button" class="btn btn-light" *ngIf="!recomienda && verLeerB" (click) ="recomendar()">★</button>
-          <select class="btn btn-light" (onchange) = "listado('probandoooo')">
-            <option value="porver" (onclick)="listado('porver')">Por ver</option>
-            <option value="visto" (onclick)="listado('visto')">Visto</option>
-            <option value="ninguno" (onclick)="listado('ninguno')">Ninguno</option>
+          <select class="btn btn-light" [ngModel]="selectedDeviceObj" (ngModelChange)="onChangeObj($event)" name="sel3">
+            <option [ngValue]="i" *ngFor="let i of deviceObjects">{{i.name}}</option>
           </select>
         </h2>
     </div>

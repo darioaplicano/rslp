@@ -27,7 +27,9 @@ export class ResenaComponent implements OnInit {
   verLeerB = this.route.snapshot.paramMap.get("v") == 'true';
   verLeer: boolean;
   vistoLeido:boolean = false;
-  lista = this.route.snapshot.paramMap.get("l"); 
+  lista = Number(this.route.snapshot.paramMap.get("l"));
+  deviceObjects = [{name: 'Por ver/leer'}, {name: 'Visto/Leído'}, {name: 'Ninguno'}];
+  selectedDeviceObj = this.deviceObjects[this.lista];
 
   ListResena:Array<Resena> = [];
   newResena =  new Resena();
@@ -71,8 +73,6 @@ export class ResenaComponent implements OnInit {
         this.newVistoLeido.recomienda = false;
         this.newVerLeer.contenido = this.contenido;
         this.newVerLeer.usuario = usuario;
-
-
       })
     })
 
@@ -100,47 +100,52 @@ export class ResenaComponent implements OnInit {
     this.recomienda = !this.recomienda;
   }
 
-  listado(listado: string){
-    alert("Entró aquí "+listado);
-    if(listado == 'porver'){
-      if(this.lista == 'visto'){
+  onChangeObja(newObj) {
+    alert(this.selectedDeviceObj == newObj);
+    /* this.selectedDeviceObj = newObj; */
+    // ... do other stuff here ...
+  }
+
+  onChangeObj(listado){
+    /* Si se selecciona Por ver en la lista */
+    if(listado == this.deviceObjects[0]){
+      /* Y estamos en la lista Visto */
+      if(this.lista == 1){
+        /* Eliminamos el contenido de Visto */
         this.dataservice.deletevistoLeido(this.newVistoLeido).subscribe((data:{})=>{
+          /* Y creamos el contenido Por ver */
           this.dataservice.createverLeer(this.newVerLeer).subscribe((data:{})=>{
-            
           });
         });
-      }else if(this.lista == 'ninguno'){
+        /* Y estamos en la lista Ninguno*/
+      }else if(this.lista == 2){
+        /* Creamos el contenido Por ver */
         this.dataservice.createverLeer(this.newVerLeer).subscribe((data:{})=>{
-
         });
       }
-      this.lista = 'porver';
+      this.lista = 0;
       this.verLeerB = false;
-    }else if(listado == 'visto'){
-      if(this.lista == 'porver'){
+    }else if(listado == this.deviceObjects[1]){
+      if(this.lista == 0){
         this.dataservice.deleteverLeer(this.newVerLeer).subscribe((data:{})=>{
           this.dataservice.createvistoLeido(this.newVistoLeido).subscribe((data:{})=>{
-
           });
         });
-      }else if(this.lista == 'ninguno'){
+      }else if(this.lista == 2){
         this.dataservice.createvistoLeido(this.newVistoLeido).subscribe((data:{})=>{
-
         });
       }
-      this.lista = 'visto';
+      this.lista = 1;
       this.verLeerB = true;
-    }else if(listado == 'ninguno'){
-      if(this.lista == 'porver'){
+    }else if(listado == this.deviceObjects[2]){
+      if(this.lista == 0){
         this.dataservice.deleteverLeer(this.newVerLeer).subscribe((data:{})=>{
-
         });
-      }else if(this.lista == 'visto'){
+      }else if(this.lista == 1){
         this.dataservice.deletevistoLeido(this.newVistoLeido).subscribe((data:{})=>{
-
         });
       }
-      this.lista = 'ninguno';
+      this.lista = 2;
       this.verLeerB = false;
     }
   }
