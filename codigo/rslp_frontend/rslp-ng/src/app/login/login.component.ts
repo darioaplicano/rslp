@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Usuario } from '../modelos/usuario';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   usuarios: any = [];
   model = new Usuario();
-  constructor( private usuarioService: DataService, public router: Router) { }
+  constructor( private usuarioService: DataService, public router: Router, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.fetchAllUsers();
@@ -32,11 +33,11 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['home']);
         }
         else {
-          console.log("PASSWORD ERR");
+          this.snackBar.open('Contraseña o usuario incorrecto', "Ok");
         }
       }
       else{
-        console.log(this.model.nickname +" no encontrado.")
+        this.snackBar.open('Contraseña o usuario incorrecto', "Ok");
       }
     });
   }
