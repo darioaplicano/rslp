@@ -76,3 +76,7 @@ mat-list-item{
     margin-top: 2px;
     border: 0.5px dashed #3f51b5;
 }
+
+.contenido {
+    cursor: pointer;
+}
