@@ -1,4 +1,4 @@
-export class Contenido {
+export class Contenido |filter:searchText {
     _id: string;
     titule: string;
     age: string;
