@@ -10,8 +10,8 @@ exports.create = (req, res) => {
 
     // Create a vistoLeido
     const vL = new vistoLeido({
-        usuario: req.body.userid,
-        contenido: req.body.contenid,
+        usuario: req.body.usuario,
+        contenido: req.body.contenido,
         recomienda: req.body.recomienda
     });
 
@@ -125,11 +125,11 @@ exports.update = (req, res) => {
 // Delete vistoLeido with the given id
 exports.delete = (req, res) => {
     // Delete the vistoLeido
-    vistoLeido.findOneAndDelete({usuario:req.params.userid, contenido:req.params.contenid})
+    vistoLeido.findOneAndDelete({usuario:req.params.usuario, contenido:req.params.contenido})
     .then(verL => {
         if(!verL) {
             return res.status(404).send({
-                message: "vistoLeido no encontrado por id " + req.params.userid+","+req.params.contenid
+                message: "vistoLeido no encontrado por id " + req.params.usuario+","+req.params.contenido
             });
         }
         res.send({"message": "vistoLeido eliminado con éxito"});

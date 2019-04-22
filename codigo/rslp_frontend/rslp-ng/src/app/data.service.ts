@@ -98,7 +98,7 @@ export class DataService {
     )
   }
 
-  // Ver resenas
+  // Data Services Alex
   public getResena(contenido: string) {
     return this.http.get<Array<Resena>>(this.actionUrl+"/comentar/"+contenido+"/tcomentarios")
     .pipe(
@@ -122,6 +122,41 @@ export class DataService {
       catchError(this.handleError)
     )
   }
+
+  public deletevistoLeido(deleted: VistoLeido) {
+    return this.http.delete<VistoLeido>(this.actionUrl+"/vistoLeido/"+deleted.usuario._id+"/"+deleted.contenido._id+"/eliminar")
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  public deleteverLeer(deleted: VerLeer) {
+    return this.http.delete<VerLeer>(this.actionUrl+"/verLeer/"+deleted.usuario._id+"/"+deleted.contenido._id+"/eliminar")
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  public createverLeer(nuevo: VerLeer): Observable<VerLeer> {
+    return this.http.post<VerLeer>(this.actionUrl+"/verLeer/", nuevo)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  public createvistoLeido(nuevo: VistoLeido): Observable<VistoLeido> {
+    return this.http.post<VistoLeido>(this.actionUrl+"/vistoLeido/", nuevo)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  //Termina los dataServices Alex
+
 
   // Error handling 
   handleError(error) {
