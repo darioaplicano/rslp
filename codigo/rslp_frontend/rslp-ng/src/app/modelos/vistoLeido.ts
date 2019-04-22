@@ -5,6 +5,6 @@ export class VistoLeido {
     _id: string;
     usuario: Usuario;
     contenido: Contenido;
-    recomienda: Boolean;
+    recomienda: boolean;
     createdAt: Date;
 }
