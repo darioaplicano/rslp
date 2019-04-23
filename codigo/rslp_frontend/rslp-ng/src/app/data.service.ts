@@ -183,6 +183,14 @@ export class DataService {
   //Termina los dataServices Alex
 
 
+  public createContenido(nuevo: Contenido): Observable<Contenido> {
+    return this.http.post<Contenido>(this.actionUrl+"/contenido", nuevo)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
   // Error handling 
   handleError(error) {
     let errorMessage = '';
