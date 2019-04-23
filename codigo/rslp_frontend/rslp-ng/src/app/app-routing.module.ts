@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'listalibros', component:ListasLibrosComponent, canActivate:[AuthGuardService] },
   { path: 'perfil/:nickname', component:PerfilComponent, canActivate:[AuthGuardService] },
   { path: 'resena/:idcontenido', component:ResenaComponent, canActivate:[AuthGuardService] },
+  
   { path: '', component:MainComponent, canActivate:[AuthGuardService] }
 ]
 

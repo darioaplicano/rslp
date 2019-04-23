@@ -30,9 +30,14 @@ export class PerfilComponent implements OnInit {
   constructor(private dataService:DataService, public router: Router, public route: ActivatedRoute) { }
   user: Usuario;
   userPerfil: Usuario;
-  seguidores: Array<Usuario>;
+  seguidores: Array<Usuario> = [];
+  seguidos: Array<Usuario> = [];
   validator: boolean;
   numFollowers = 0;
+  nickname = "";
+  seeFollowers = false;
+  seeFollowed = false;
+
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem("currentUser"));
     var userPerfil = this.route.snapshot.paramMap.get("nickname");
@@ -44,10 +49,16 @@ export class PerfilComponent implements OnInit {
       this.validator = this.user._id == this.userPerfil._id;
       this.getLists()
 
-      this.dataService.getSeguidores(this.userPerfil).subscribe((data: []) => {
+      /* Encontrar la lista de los seguidores */
+      this.dataService.getSeguidores(this.userPerfil).subscribe((data: Array<Usuario>) => {
         this.seguidores = data;
-        console.log(this.seguidores)
       });
+
+      /* Encontrar la lista de los seguidos */
+      this.dataService.getSeguidos(this.user).subscribe((data: Array<Usuario>) => {
+        this.seguidos = data;
+      });
+
     });
   }
 
@@ -69,21 +80,14 @@ export class PerfilComponent implements OnInit {
     this.genreList = this.seenList.map(el=>el.contenido.gender.split(",")).concat(this.toseeList.map(el=>el.contenido.gender.split(","))).reduce((acc, val) => acc.concat(val), []).filter(function(item, i, ar){ return ar.indexOf(item) === i; })
   }
 
-  verContenido(contenido:Contenido, recomienda: string, vistoLeer: string, listado: string){
-    localStorage.setItem("contenidoLS",JSON.stringify(contenido));
-    localStorage.setItem('recomienda', recomienda);
-    localStorage.setItem('ver', vistoLeer);
-    localStorage.setItem('listado', listado);
+  activedFollowers(){
+    this.seeFollowers = !this.seeFollowers;
+    this.seeFollowed = false;
+  }
 
-    localStorage.setItem('contenido._id', contenido._id);
-    localStorage.setItem('contenido.titule', contenido.titule);
-    localStorage.setItem('contenido.age', contenido.age);
-    localStorage.setItem('contenido.gender', contenido.gender);
-    localStorage.setItem('contenido.synopsis', contenido.synopsis);
-    localStorage.setItem('contenido.authorDirector', contenido.authorDirector);
-    localStorage.setItem('contenido.image', contenido.image);
-    localStorage.setItem('contenido.type', contenido.type);
-    this.router.navigate(['resena']);
+  activedFollowed(){
+    this.seeFollowers = false;
+    this.seeFollowed = !this.seeFollowed;
   }
 
 }
