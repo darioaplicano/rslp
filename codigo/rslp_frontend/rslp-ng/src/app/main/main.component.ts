@@ -18,6 +18,13 @@ export class MainComponent implements OnInit {
   constructor(private dataService:DataService, public router: Router) { }
   user: Usuario;
   numFollowers = 0;
+  numFollowed = 0;
+
+  /* Información para ver los usuarios seguidores y seguidos */
+  seguidores: Array<Usuario> = [];
+  seguidos: Array<Usuario> = [];
+  seeFollowers = false;
+  seeFollowed = false;
 
   activityLeidos:Array<VistoLeido> = [];
   activityLeer:Array<VerLeer> = [];
@@ -30,6 +37,9 @@ export class MainComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem("currentUser"));
     this.dataService.getSeguidores(this.user).subscribe((data: []) => {
       this.numFollowers = data.length;
+      this.seguidores = data;
+      console.log("ENCONTRADOOO");
+      console.log(data);
     })
 
     this.loadActivity()
@@ -40,6 +50,8 @@ export class MainComponent implements OnInit {
     //y por cada uno leemos sus listas de vistoLeido, verLeer y Seguidores
     this.dataService.getSeguidos(this.user).subscribe((data: []) => {
       data.forEach(d=>this.loadLists(d));
+      this.numFollowed = data.length;
+      this.seguidos = data;
     })
   }
 
@@ -65,7 +77,6 @@ export class MainComponent implements OnInit {
             var a = new Activity;
             a.contenido = v;
             a.tipo = "Seguir";
-    
             return a
           }));
         })
@@ -90,17 +101,14 @@ export class MainComponent implements OnInit {
     })
   }
 
-  verContenido(contenido:Contenido){
-    localStorage.setItem("contenidoLS",JSON.stringify(contenido));
-    localStorage.setItem('contenido._id', contenido._id);
-    localStorage.setItem('contenido.titule', contenido.titule);
-    localStorage.setItem('contenido.age', contenido.age);
-    localStorage.setItem('contenido.gender', contenido.gender);
-    localStorage.setItem('contenido.synopsis', contenido.synopsis);
-    localStorage.setItem('contenido.authorDirector', contenido.authorDirector);
-    localStorage.setItem('contenido.image', contenido.image);
-    localStorage.setItem('contenido.type', contenido.type);
-    this.router.navigate(['resena']);
+  activedFollowers(){
+    this.seeFollowers = !this.seeFollowers;
+    this.seeFollowed = false;
+  }
+
+  activedFollowed(){
+    this.seeFollowers = false;
+    this.seeFollowed = !this.seeFollowed;
   }
 
 }

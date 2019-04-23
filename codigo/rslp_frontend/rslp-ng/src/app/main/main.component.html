@@ -7,12 +7,27 @@
                 <img class="userpic" src="{{user.imagen}}">
                 <div>
                     <div class="name">{{user.nickname}}</div>
-                    <div class="counter">{{numFollowers}} seguidores</div>
+                    <div class="counter contenido" (click) = "activedFollowers()">{{numFollowers}} seguidores</div>
+                    <div class="counter contenido" (click) = "activedFollowed()">{{numFollowed}} seguidos</div>
                 </div>
             </div>
             <div class="lists">
                 <button mat-raised-button color="primary" [routerLink]="[ '/listapelis' ]">Lista de películas</button>
                 <button mat-raised-button color="primary" [routerLink]="[ '/listalibros' ]">Lista de libros</button>
+            </div>
+            <div class="follower-followed">
+                <div *ngIf="seeFollowers">
+                    <h1 class="section-title" class="mat-h1">Seguidores</h1>
+                    <div class="contenido" [routerLink]="[ '/perfil', element.seguidor.nickname]" *ngFor="let element of seguidores">
+                        {{element.seguidor.nickname}}
+                    </div>
+                </div>
+                <div *ngIf="seeFollowed">
+                    <h1 class="section-title" class="mat-h1">Seguidos</h1>
+                    <div class="contenido" [routerLink]="[ '/perfil', element.seguido.nickname]" *ngFor="let element of seguidos">
+                        {{element.seguido.nickname}}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -24,19 +39,19 @@
                 <mat-list-item *ngFor="let ac of sortByDate(activity)">
                     <span class="date">{{ ac.contenido.createdAt | date:'dd/MM/yy, H:mm' }}</span>
                     <span *ngIf="ac.tipo=='VerLeer'" class="text">
-                        <span class="nickname">{{ac.contenido.usuario.nickname}}</span> añadió <span class="contenido" [routerLink]="[ '/resena', ac.contenido.contenido._id]">{{ac.contenido.contenido.titule}}</span> a su lista de 
+                        <span class="contenido" [routerLink]="[ '/perfil', ac.contenido.usuario.nickname]">{{ac.contenido.usuario.nickname}}</span> añadió <span class="contenido" [routerLink]="[ '/resena', ac.contenido.contenido._id]">{{ac.contenido.contenido.titule}}</span> a su lista de 
                         <span *ngIf="ac.contenido.contenido.type=='book'">libros por leer</span> 
                         <span *ngIf="ac.contenido.contenido.type=='movie'">películas por ver</span>
                         .
                     </span>
                     <span *ngIf="ac.tipo=='VistoLeido'"  class="text">
-                        <span class="nickname">{{ac.contenido.usuario.nickname}}</span> añadió <span class="contenido"  [routerLink]="[ '/resena', ac.contenido.contenido._id]">{{ac.contenido.contenido.titule}}</span> a su lista de 
+                        <span class="contenido" [routerLink]="[ '/perfil', ac.contenido.usuario.nickname]">{{ac.contenido.usuario.nickname}}</span> añadió <span class="contenido"  [routerLink]="[ '/resena', ac.contenido.contenido._id]">{{ac.contenido.contenido.titule}}</span> a su lista de 
                         <span *ngIf="ac.contenido.contenido.type=='book'">libros leídos</span> 
                         <span *ngIf="ac.contenido.contenido.type=='movie'">películas vistas</span>
                         .
                     </span>
                     <span *ngIf="ac.tipo=='Seguir'"  class="text">
-                            <span class="nickname">{{ac.contenido.seguidor.nickname}}</span> empezó a seguir a <span class="nickname">{{ac.contenido.seguido.nickname}}</span>.
+                            <span class="contenido" [routerLink]="[ '/perfil', ac.contenido.seguidor.nickname]">{{ac.contenido.seguidor.nickname}}</span> empezó a seguir a <span class="contenido" [routerLink]="[ '/perfil', ac.contenido.seguido.nickname]">{{ac.contenido.seguido.nickname}}</span>.
                     </span>
                 </mat-list-item>
             </mat-list>

@@ -56,9 +56,12 @@ export class ResenaComponent implements OnInit {
       //comprobamos si el contenido está en alguna lista del usuario
       this.dataservice.getListaVerLeer(usuario).subscribe((data:Array<VerLeer>)=>{
         this.verLeer = (data.map(d=>d.contenido._id).includes(this.contenido._id));
-      })
+      });
       this.dataservice.getListaVistosLeidos(usuario).subscribe((data:Array<VistoLeido>)=>{
         this.vistoLeido = (data.map(d=>d.contenido._id).includes(this.contenido._id));
+        if(this.vistoLeido == this.verLeer){
+          this.lista = 2;
+        }
         if(this.vistoLeido){
           //si está en vistoLeido, vemos si la recomienda
           this.recomienda = data.filter(d=>d.contenido._id==this.contenido._id)[0].recomienda;
@@ -66,9 +69,6 @@ export class ResenaComponent implements OnInit {
         }
         if(this.verLeer){
           this.lista = 0;
-        }
-        if(this.vistoLeido == this.verLeer){
-          this.lista = 2;
         }
         this.selectedDeviceObj = this.deviceObjects[this.lista];
         this.getResena();
@@ -113,47 +113,60 @@ export class ResenaComponent implements OnInit {
   }
 
   onChangeObj(listado){
-    /* Si se selecciona Por ver en la lista */
+    /* Si se selecciona Por ver/leer en la lista */
     if(listado == this.deviceObjects[0]){
-      /* Y estamos en la lista Visto */
+      /* Y estamos en la lista Visto/Leído */
       if(this.lista == 1){
-        /* Eliminamos el contenido de Visto */
+        /* Eliminamos el contenido de Visto/Leído */
         this.dataservice.deletevistoLeido(this.newVistoLeido).subscribe((data:{})=>{
-          /* Y creamos el contenido Por ver */
+          /* Y creamos el contenido Por ver/leer */
           this.dataservice.createverLeer(this.newVerLeer).subscribe((data:{})=>{
           });
         });
         /* Y estamos en la lista Ninguno*/
       }else if(this.lista == 2){
-        /* Creamos el contenido Por ver */
+        /* Creamos el contenido Por ver/leer */
         this.dataservice.createverLeer(this.newVerLeer).subscribe((data:{})=>{
         });
       }
+      /* Reiniciamos la posición de la lista y que no está visto/leído */
       this.lista = 0;
       this.vistoLeido = false;
+      /* Si selecciona Visto/Leído en la lista */
     }else if(listado == this.deviceObjects[1]){
+      /* Y estamos en por ver/leer */
       if(this.lista == 0){
+        /* Eliminamos el contenido por ver/leer */
         this.dataservice.deleteverLeer(this.newVerLeer).subscribe((data:{})=>{
+          /* Creamos el contenido visto/leído */
           this.dataservice.createvistoLeido(this.newVistoLeido).subscribe((data:{})=>{
           });
         });
+        /* Si estamos en ninguno */
       }else if(this.lista == 2){
+        /* Creamos el contenido visto/leído */
         this.dataservice.createvistoLeido(this.newVistoLeido).subscribe((data:{})=>{
         });
       }
+      /* Reiniciamos la posición de la lista y que si está visto/leído */
       this.lista = 1;
       this.vistoLeido = true;
+      /* Si selecciona ninguno en la lista */
     }else if(listado == this.deviceObjects[2]){
+      /* Si estamos en por ver/leer */
       if(this.lista == 0){
+        /* Eliminamos por ver/leer */
         this.dataservice.deleteverLeer(this.newVerLeer).subscribe((data:{})=>{
         });
+        /* Si estamos en visto/leído */
       }else if(this.lista == 1){
+        /* Eliminamos visto/leído */
         this.dataservice.deletevistoLeido(this.newVistoLeido).subscribe((data:{})=>{
         });
       }
+      /* Reiniciamos la posición de la lista y que no está visto/leído */
       this.lista = 2;
       this.vistoLeido = false;
     }
   }
-
 }
