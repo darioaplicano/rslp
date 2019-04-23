@@ -161,3 +161,22 @@ exports.delete = (req, res) => {
         });
     });
 };
+
+//Delete All:
+// Delete comment with the given id
+exports.delete = (req, res) => {
+    // Delete the comment
+    Comment.findOneAndDelete({contenido:req.params.contenid})
+    .then(comment => {
+        if(!comment) {
+            return res.status(404).send({
+                message: "Comment no encontrado por id " +req.params.contenid
+            });
+        }
+        res.send({"message": "Comments eliminados con éxito"});
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while deleting comment."
+        });
+    });
+};

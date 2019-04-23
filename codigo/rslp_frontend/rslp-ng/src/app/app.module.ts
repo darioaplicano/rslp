@@ -38,11 +38,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {MatDialogModule} from '@angular/material/dialog';
-<<<<<<< HEAD
-import { ContentConfigComponent } from './content-config/content-config.component';
-=======
+import { ContentConfigComponent, DialogoConfirmate, DialogoContentDelete } from './content-config/content-config.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
->>>>>>> 151c1c43d07bac6c11f114ea78e30c41e262ed45
 
 @NgModule({
   declarations: [
@@ -57,14 +54,13 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     PerfilComponent,
     DialogoPasswd,
     DialogoDelete,
+    DialogoConfirmate,
+    DialogoContentDelete,
     ResenaComponent,
     AnadirPeliculasComponent,
     AnadirLibrosComponent,
-<<<<<<< HEAD
     ContentConfigComponent,
-=======
     BusquedaComponent,
->>>>>>> 151c1c43d07bac6c11f114ea78e30c41e262ed45
   ],
   imports: [
     BrowserModule,
@@ -92,6 +88,6 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     NgbModule
   ],
   providers: [DataService],
-  bootstrap: [AppComponent,DialogoPasswd,DialogoDelete]
+  bootstrap: [AppComponent,DialogoPasswd,DialogoDelete, DialogoConfirmate, DialogoContentDelete]
 })
 export class AppModule { }
