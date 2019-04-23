@@ -12,6 +12,8 @@ import { DialogoPasswd, DialogData } from '../userconfig/userconfig.component';
 })
 export class ContentConfigComponent implements OnInit {
   model = new Contenido();
+  deviceObjects = [{name: 'Película'}, {name: 'Libro'}];
+  selectedDeviceObj;
 
   constructor(private dataservice:DataService, public router: Router, public route: ActivatedRoute, public dialog: MatDialog, private snackBar: MatSnackBar) { }
 
@@ -19,7 +21,18 @@ export class ContentConfigComponent implements OnInit {
     var id = this.route.snapshot.paramMap.get("idcontenido");
     this.dataservice.getContenidoPorId(id).subscribe((data:Contenido)=>{
       this.model = data;
+      if(this.model.type == 'book')
+        this.selectedDeviceObj = this.deviceObjects[1];
+      else
+        this.selectedDeviceObj = this.deviceObjects[0];
     });
+  }
+
+  onChangeObj(listado){
+    if(listado == this.deviceObjects[0])
+      this.model.type = 'movie';
+    else
+      this.model.type = 'book';
   }
 
   openDialog(){

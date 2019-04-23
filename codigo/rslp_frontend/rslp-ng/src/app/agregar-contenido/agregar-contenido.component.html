@@ -1,0 +1,67 @@
+<app-nav-bar></app-nav-bar>
+<div class="content">
+<form (ngSubmit)="onSubmit()" #contentForm="ngForm">
+  
+  <h1 id="page-title" class="mat-h1">Agregar contenido:</h1>
+  <mat-form-field class="form-group form-element">
+    <label>Título:</label>
+    <input matInput type="text" class="form-control" id="titule"
+    [(ngModel)]="model.titule"
+    required name="titule" value={{model.titule}}>
+    <mat-error>Debe tener un título</mat-error>
+  </mat-form-field>
+  <mat-form-field class="form-group form-element">
+    <label>Tipo:</label>
+    <select matInput class="form-control btn btn-light" id="type" [ngModel]="selectedDeviceObj" (ngModelChange)="onChangeObj($event)" name="sel3">
+      <option [ngValue]="i" *ngFor="let i of deviceObjects">{{i.name}}</option>
+    </select>
+    <input hidden matInput type="text" class="form-control" id="titule"
+    [(ngModel)]="model.titule"
+    required name="type" value={{model.titule}}>
+    <mat-error>Debe tener un tipo</mat-error>
+  </mat-form-field>
+  <mat-form-field class="form-group form-element">
+    <label>Año:</label>
+    <input matInput type="text" class="form-control" id="age"
+    [(ngModel)]="model.age"
+    required name="age" value={{model.age}}>
+    <mat-error>Debe tener un año</mat-error>
+  </mat-form-field>
+  <mat-form-field class="form-group form-element">
+    <label>Genero (separado por comas):</label>
+    <input matInput type="text" class="form-control" id="gender"
+    [(ngModel)]="model.gender"
+    required name="gender" value={{model.gender}}>
+    <mat-error>Debe tener un género</mat-error>
+  </mat-form-field>
+  <mat-form-field class="form-group form-element">
+    <label>Sinopsis:</label>
+    <input matInput type="text" class="form-control" id="synopsis"
+    [(ngModel)]="model.synopsis"
+    required name="synopsis" value={{model.synopsis}}>
+    <mat-error>Debes agregar una sinopsis</mat-error>
+  </mat-form-field>
+  <mat-form-field class="form-group form-element">
+    <label>Autor o director (separado por comas):</label>
+    <input matInput type="text" class="form-control" id="authorDirector"
+    [(ngModel)]="model.authorDirector"
+    required name="authorDirector" value={{model.authorDirector}}>
+    <mat-error>Debes agregar un director o autor</mat-error>
+  </mat-form-field>
+  <mat-form-field class="form-group form-element">
+    <label>URL imagen:</label>
+    <input matInput type="text" class="form-control" id="image"
+    required [(ngModel)]="model.image" name="image" value={{model.image}}>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" class="form-element"  type="submit" [disabled]="!contentForm.form.valid">Agregar</button>
+</form>
+
+<ul *ngFor="let usuario of usuarios">
+  <li>{{usuario._id}}</li>
+  <li>{{usuario.nickname}}</li>
+  <li>{{usuario.contrasena}}</li>
+  <li>{{usuario.correo}}</li>
+  <li>{{usuario.imagen}}</li>
+</ul>
+</div>

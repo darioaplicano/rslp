@@ -10,6 +10,16 @@
         <mat-error>Debe tener un título</mat-error>
       </mat-form-field>
       <mat-form-field class="form-group form-element">
+        <label>Tipo:</label>
+        <select matInput class="form-control btn btn-light" id="type" [ngModel]="selectedDeviceObj" (ngModelChange)="onChangeObj($event)" name="sel3">
+          <option [ngValue]="i" *ngFor="let i of deviceObjects">{{i.name}}</option>
+        </select>
+        <input hidden matInput type="text" class="form-control" id="titule"
+        [(ngModel)]="model.titule"
+        required name="type" value={{model.titule}}>
+        <mat-error>Debe tener un tipo</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-group form-element">
         <label>Año:</label>
         <input matInput type="text" class="form-control" id="age"
         [(ngModel)]="model.age"
