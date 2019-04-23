@@ -32,11 +32,17 @@ import { ResenaComponent } from './resena/resena.component';
 import { MatSnackBarModule } from '@angular/material';
 import { AnadirLibrosComponent} from './anadir-libros/anadir-libros.component';
 import { AnadirPeliculasComponent} from './anadir-peliculas/anadir-peliculas.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {MatDialogModule} from '@angular/material/dialog';
+<<<<<<< HEAD
 import { ContentConfigComponent } from './content-config/content-config.component';
+=======
+import { BusquedaComponent } from './busqueda/busqueda.component';
+>>>>>>> 151c1c43d07bac6c11f114ea78e30c41e262ed45
 
 @NgModule({
   declarations: [
@@ -54,7 +60,11 @@ import { ContentConfigComponent } from './content-config/content-config.componen
     ResenaComponent,
     AnadirPeliculasComponent,
     AnadirLibrosComponent,
+<<<<<<< HEAD
     ContentConfigComponent,
+=======
+    BusquedaComponent,
+>>>>>>> 151c1c43d07bac6c11f114ea78e30c41e262ed45
   ],
   imports: [
     BrowserModule,
@@ -77,6 +87,8 @@ import { ContentConfigComponent } from './content-config/content-config.componen
     MatDialogModule,
     MatSnackBarModule,
     FormsModule,
+    MatTabsModule,
+    MatCheckboxModule,
     NgbModule
   ],
   providers: [DataService],
