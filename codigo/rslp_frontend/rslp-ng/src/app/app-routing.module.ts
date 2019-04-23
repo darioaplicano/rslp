@@ -23,8 +23,8 @@ const routes: Routes = [
   { path: 'perfil', component:PerfilComponent, canActivate:[AuthGuardService] },
   { path: 'resena/:idcontenido', component:ResenaComponent, canActivate:[AuthGuardService] },
   { path: '', component:MainComponent, canActivate:[AuthGuardService] }
-  { path: 'anadirlibros', component:AnadirLibrosComponent, canActivate:[AuthGuardService] },
-  { path: 'anadirpeliculas', component:AnadirPeliculasComponent, canActivate:[AuthGuardService] },
+  { path: 'anadir-libros', component:AnadirLibrosComponent, canActivate:[AuthGuardService] },
+  { path: 'anadir-peliculas', component:AnadirPeliculasComponent, canActivate:[AuthGuardService] },
 ]
 
 @NgModule({

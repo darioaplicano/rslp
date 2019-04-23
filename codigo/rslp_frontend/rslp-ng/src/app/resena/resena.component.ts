@@ -23,11 +23,12 @@ export class ResenaComponent implements OnInit {
   authorDirector:string;
   image:string;
   type:string;
-  recomienda = this.route.snapshot.paramMap.get("r") == 'true';
-  verLeerB = this.route.snapshot.paramMap.get("v") == 'true';
-  verLeer: boolean;
-  vistoLeido:boolean = false;
-  lista = this.route.snapshot.paramMap.get("l"); 
+  recomienda = false;
+  vistoLeido = false;
+  verLeer = false;
+  lista;
+  deviceObjects = [{name: 'Por ver/leer'}, {name: 'Visto/Leído'}, {name: 'Ninguno'}];
+  selectedDeviceObj;
 
   ListResena:Array<Resena> = [];
   newResena =  new Resena();
@@ -58,11 +59,18 @@ export class ResenaComponent implements OnInit {
       })
       this.dataservice.getListaVistosLeidos(usuario).subscribe((data:Array<VistoLeido>)=>{
         this.vistoLeido = (data.map(d=>d.contenido._id).includes(this.contenido._id));
-        /* if(this.vistoLeido){
+        if(this.vistoLeido){
           //si está en vistoLeido, vemos si la recomienda
           this.recomienda = data.filter(d=>d.contenido._id==this.contenido._id)[0].recomienda;
-        } */
-
+          this.lista = 1;
+        }
+        if(this.verLeer){
+          this.lista = 0;
+        }
+        if(this.vistoLeido == this.verLeer){
+          this.lista = 2;
+        }
+        this.selectedDeviceObj = this.deviceObjects[this.lista];
         this.getResena();
         this.newResena.contenido = this.contenido;
         this.newResena.usuario = usuario;
@@ -71,8 +79,6 @@ export class ResenaComponent implements OnInit {
         this.newVistoLeido.recomienda = false;
         this.newVerLeer.contenido = this.contenido;
         this.newVerLeer.usuario = usuario;
-
-
       })
     })
 
@@ -100,48 +106,53 @@ export class ResenaComponent implements OnInit {
     this.recomienda = !this.recomienda;
   }
 
-  listado(listado: string){
-    alert("Entró aquí "+listado);
-    if(listado == 'porver'){
-      if(this.lista == 'visto'){
+  onChangeObja(newObj) {
+    alert(this.selectedDeviceObj == newObj);
+    /* this.selectedDeviceObj = newObj; */
+    // ... do other stuff here ...
+  }
+
+  onChangeObj(listado){
+    /* Si se selecciona Por ver en la lista */
+    if(listado == this.deviceObjects[0]){
+      /* Y estamos en la lista Visto */
+      if(this.lista == 1){
+        /* Eliminamos el contenido de Visto */
         this.dataservice.deletevistoLeido(this.newVistoLeido).subscribe((data:{})=>{
+          /* Y creamos el contenido Por ver */
           this.dataservice.createverLeer(this.newVerLeer).subscribe((data:{})=>{
-            
           });
         });
-      }else if(this.lista == 'ninguno'){
+        /* Y estamos en la lista Ninguno*/
+      }else if(this.lista == 2){
+        /* Creamos el contenido Por ver */
         this.dataservice.createverLeer(this.newVerLeer).subscribe((data:{})=>{
-
         });
       }
-      this.lista = 'porver';
-      this.verLeerB = false;
-    }else if(listado == 'visto'){
-      if(this.lista == 'porver'){
+      this.lista = 0;
+      this.vistoLeido = false;
+    }else if(listado == this.deviceObjects[1]){
+      if(this.lista == 0){
         this.dataservice.deleteverLeer(this.newVerLeer).subscribe((data:{})=>{
           this.dataservice.createvistoLeido(this.newVistoLeido).subscribe((data:{})=>{
-
           });
         });
-      }else if(this.lista == 'ninguno'){
+      }else if(this.lista == 2){
         this.dataservice.createvistoLeido(this.newVistoLeido).subscribe((data:{})=>{
-
         });
       }
-      this.lista = 'visto';
-      this.verLeerB = true;
-    }else if(listado == 'ninguno'){
-      if(this.lista == 'porver'){
+      this.lista = 1;
+      this.vistoLeido = true;
+    }else if(listado == this.deviceObjects[2]){
+      if(this.lista == 0){
         this.dataservice.deleteverLeer(this.newVerLeer).subscribe((data:{})=>{
-
         });
-      }else if(this.lista == 'visto'){
+      }else if(this.lista == 1){
         this.dataservice.deletevistoLeido(this.newVistoLeido).subscribe((data:{})=>{
-
         });
       }
-      this.lista = 'ninguno';
-      this.verLeerB = false;
+      this.lista = 2;
+      this.vistoLeido = false;
     }
   }
 

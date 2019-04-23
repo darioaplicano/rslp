@@ -1,30 +1,25 @@
-import {Component} from '@angular/core';
+import * as core from '@angular/core';
+import { Contenido } from '../modelos/contenido';
+import { DataService } from '../data.service';
+import { Router } from '@angular/router';
 
-/** @title Simple form field */
-@Component({
-  selector: 'form-field-overview-example',
-  templateUrl: 'form-field-overview-example.html',
-  styleUrls: ['form-field-overview-example.css'],
-})
-export class FormFieldOverviewExample {}
-
-@Component({
+@core.Component({
   selector: 'app-anadir-peliculas',
   templateUrl: './anadir-peliculas.component.html',
   styleUrls: ['./anadir-peliculas.component.css']
 })
-export class AnadirPeliculasComponent implements OnInit {
+export class AnadirPeliculasComponent implements core.OnInit {
   
-  model = new Pelicula();
+  model = new Contenido();
 
-  constructor(private peliculaService: DataService, public router: Router) { }
+  constructor(private contenidoService: DataService, public router: Router) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    this.peliculaService.createPelicula(this.model).subscribe((data:{}) => {
-      localStorage.setItem('currentPelicula', JSON.stringify(data));
+    this.contenidoService.createContenido(this.model).subscribe((data:{}) => {
+      localStorage.setItem('currentContenido', JSON.stringify(data));
       this.router.navigate(['home']);
     });
   }
