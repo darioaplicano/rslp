@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .addbox {
     display: flex;
     flex-direction: column;
@@ -5,4 +6,13 @@
   
   .addbox > * {
     width: 100%;
+=======
+.addbox {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .addbox > * {
+    width: 100%;
+>>>>>>> 7d8b1bce00334ee473c35f3a58b48bd6888d0891
   }

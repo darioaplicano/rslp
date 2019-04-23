@@ -10,6 +10,8 @@ import { ListasPeliculasComponent } from './listas-peliculas/listas-peliculas.co
 import { ListasLibrosComponent } from './listas-libros/listas-libros.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { ResenaComponent } from './resena/resena.component';
+import { AnadirPeliculasComponent} from './anadir-peliculas/anadir-peliculas.component';
+import { AnadirLibrosComponent} from './anadir-libros/anadir-libros.component';
 
 const routes: Routes = [
   { path: 'login', component:LoginComponent },
@@ -22,6 +24,8 @@ const routes: Routes = [
   { path: 'resena/:idcontenido', component:ResenaComponent, canActivate:[AuthGuardService] },
   
   { path: '', component:MainComponent, canActivate:[AuthGuardService] }
+  { path: 'anadir-libros', component:AnadirLibrosComponent, canActivate:[AuthGuardService] },
+  { path: 'anadir-peliculas', component:AnadirPeliculasComponent, canActivate:[AuthGuardService] },
 ]
 
 @NgModule({

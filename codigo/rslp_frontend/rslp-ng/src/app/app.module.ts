@@ -30,6 +30,9 @@ import { MatCardModule } from '@angular/material/card';
 import { PerfilComponent } from './perfil/perfil.component';
 import { ResenaComponent } from './resena/resena.component';
 import { MatSnackBarModule } from '@angular/material';
+import { AnadirLibrosComponent} from './anadir-libros/anadir-libros.component';
+import { AnadirPeliculasComponent} from './anadir-peliculas/anadir-peliculas.component';
+
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {MatDialogModule} from '@angular/material/dialog';
@@ -47,7 +50,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     PerfilComponent,
     DialogoPasswd,
     DialogoDelete,
-    ResenaComponent
+    ResenaComponent,
+    AnadirPeliculasComponent,
+    AnadirLibrosComponent,
   ],
   imports: [
     BrowserModule,
