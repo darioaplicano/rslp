@@ -36,6 +36,7 @@ import { AnadirPeliculasComponent} from './anadir-peliculas/anadir-peliculas.com
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {MatDialogModule} from '@angular/material/dialog';
+import { ContentConfigComponent } from './content-config/content-config.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     ResenaComponent,
     AnadirPeliculasComponent,
     AnadirLibrosComponent,
+    ContentConfigComponent,
   ],
   imports: [
     BrowserModule,
