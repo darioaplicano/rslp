@@ -9,5 +9,6 @@ router.get('/:userid/comentarios', comentar.findByUsuario);        //R(by one in
 router.get('/:contenid/tcomentarios', comentar.findByContenido);          //R(by other index)
 router.put('/:userid/:contenid', comentar.update);     //U
 router.delete('/:userid/:contenid', comentar.delete);  //D
+router.delete('/:contenid/tcomentarios', comentar.deleteT);  //D
 
 module.exports = router;

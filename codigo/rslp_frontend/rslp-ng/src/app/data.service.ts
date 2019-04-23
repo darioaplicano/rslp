@@ -188,6 +188,23 @@ export class DataService {
     )
   }
 
+  public updateContenido(updated: Contenido): Observable<Contenido> {
+    return this.http.put<Contenido>(this.actionUrl+"/contenido/"+updated._id, updated)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  public deleteContenido(eliminar: string) {
+    return this.http.delete<Contenido>(this.actionUrl+"/contenido/"+eliminar)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+
   //Termina los dataServices Alex
 
 

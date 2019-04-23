@@ -2,14 +2,14 @@
 <div class="container">
   <div class="row">
     <div div class="col-sm-10">
-        <h2>({{type}}) {{titule}}
+        <h2><mat-icon>{{type}}</mat-icon>{{titule}}
           <button type="button" class="btn btn-primary" *ngIf="recomienda && vistoLeido" (click) ="recomendar()">★</button>
           <button type="button" class="btn btn-light" *ngIf="!recomienda && vistoLeido" (click) ="recomendar()">★</button>
           <select class="btn btn-light" [ngModel]="selectedDeviceObj" (ngModelChange)="onChangeObj($event)" name="sel3">
             <option [ngValue]="i" *ngFor="let i of deviceObjects">{{i.name}}</option>
           </select>
         </h2>
-        <button mat-button routerLink="/config">  
+        <button mat-button [routerLink]="[ '/contentConfig', _id]">  
           Editar
           <mat-icon>edit</mat-icon>
         </button>

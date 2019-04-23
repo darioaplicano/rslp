@@ -1,0 +1,12 @@
+.form-element {
+    display:block;
+    width: 100%;
+}
+
+h1{
+    text-align: center;
+}
+
+.btns {
+    float:right;
+}
