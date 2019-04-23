@@ -1,14 +1,18 @@
 <div class="bar"><app-nav-bar></app-nav-bar></div>
 <div class="container">
   <div class="row">
-    <div>
-        <h2>{{titule}}
+    <div div class="col-sm-10">
+        <h2>({{type}}) {{titule}}
           <button type="button" class="btn btn-primary" *ngIf="recomienda && vistoLeido" (click) ="recomendar()">★</button>
           <button type="button" class="btn btn-light" *ngIf="!recomienda && vistoLeido" (click) ="recomendar()">★</button>
           <select class="btn btn-light" [ngModel]="selectedDeviceObj" (ngModelChange)="onChangeObj($event)" name="sel3">
             <option [ngValue]="i" *ngFor="let i of deviceObjects">{{i.name}}</option>
           </select>
         </h2>
+        <button mat-button routerLink="/config">  
+          Editar
+          <mat-icon>edit</mat-icon>
+        </button>
     </div>
   </div> 
   <div class="row">
