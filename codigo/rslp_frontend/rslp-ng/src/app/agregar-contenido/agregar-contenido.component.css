@@ -1,0 +1,23 @@
+.form-element {
+    display:block;
+    width: 100%;
+}
+.content {
+    margin-top: 50px;
+    width: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#page-title{
+    text-align: center;
+}
+button {
+    margin-top:5px;
+}
+
+#delete-btn {
+    margin-top: 10px;
+    width: 100%;
+}

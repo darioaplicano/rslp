@@ -14,6 +14,7 @@ import { AnadirPeliculasComponent} from './anadir-peliculas/anadir-peliculas.com
 import { AnadirLibrosComponent} from './anadir-libros/anadir-libros.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { ContentConfigComponent } from './content-config/content-config.component';
+import { AgregarContenidoComponent } from './agregar-contenido/agregar-contenido.component';
 
 const routes: Routes = [
   { path: 'login', component:LoginComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'listalibros', component:ListasLibrosComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always'  },
   { path: 'perfil/:nickname', component:PerfilComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always'  },
   { path: 'resena/:idcontenido', component:ResenaComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always' },
+  { path: 'agregar-contenido', component:AgregarContenidoComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always' },
 
   { path: '', component:MainComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always'  },
   { path: 'anadir-libros', component:AnadirLibrosComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always'  },

@@ -164,7 +164,7 @@ exports.delete = (req, res) => {
 
 //Delete All:
 // Delete comment with the given id
-exports.delete = (req, res) => {
+exports.deleteT = (req, res) => {
     // Delete the comment
     Comment.findOneAndDelete({contenido:req.params.contenid})
     .then(comment => {

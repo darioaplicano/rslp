@@ -209,7 +209,7 @@ export class DataService {
 
 
   public createContenido(nuevo: Contenido): Observable<Contenido> {
-    return this.http.post<Contenido>(this.actionUrl+"/contenido", nuevo)
+    return this.http.post<Contenido>(this.actionUrl+"/contenido/", nuevo)
     .pipe(
       retry(1),
       catchError(this.handleError)
