@@ -81,7 +81,6 @@ export class ResenaComponent implements OnInit {
         this.newVerLeer.usuario = usuario;
       })
     })
-
   }
 
   getResena(){

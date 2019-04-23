@@ -7,6 +7,7 @@ import { VistoLeido } from './modelos/vistoLeido';
 import { VerLeer } from './modelos/verLeer';
 import { Contenido } from './modelos/contenido';
 import { Resena } from './modelos/resena';
+import { Seguir } from './modelos/seguir';
 
 
 @Injectable()
@@ -157,6 +158,22 @@ export class DataService {
 
   public createvistoLeido(nuevo: VistoLeido): Observable<VistoLeido> {
     return this.http.post<VistoLeido>(this.actionUrl+"/vistoLeido/", nuevo)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  public deleteSeguidor(seguidor: string, seguido: string) {
+    return this.http.delete<Seguir>(this.actionUrl+"/sigue/"+seguidor+"/"+seguido)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  public createSeguidor(nuevo: Seguir): Observable<Seguir> {
+    return this.http.post<Seguir>(this.actionUrl+"/sigue/", nuevo)
     .pipe(
       retry(1),
       catchError(this.handleError)

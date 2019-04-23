@@ -6,8 +6,17 @@ const Follow = require('../models/sigue.model.js');
 // Creates and writes a new follow to the database
 exports.create = (req, res) => {
     // TODO: Validate request
+    if(!req.body.seguidor) {
+        return res.status(400).send({
+            message: "El seguidor ID no puede estar vacío"
+        });
+    }
+    if(!req.body.seguido) {
+        return res.status(400).send({
+            message: "El seguido ID no puede estar vacío"
+        });
+    }
     
-
     // Create a follow
     const seguir = new Follow({
         seguidor: req.body.seguidor,
