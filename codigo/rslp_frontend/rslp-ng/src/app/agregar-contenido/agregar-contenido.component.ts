@@ -26,10 +26,8 @@ export class AgregarContenidoComponent implements OnInit {
   }
 
   onSubmit() {
-    this.dataservice.createContenido(this.model).subscribe((data:{}) => {
-      console.log(data);
-     /*  localStorage.setItem('currentUser', JSON.stringify(data));
-      */this.router.navigate(['home']); 
+    this.dataservice.createContenido(this.model).subscribe((data:Contenido) => {
+      this.router.navigate(['resena',data._id]); 
     });
   }
 
