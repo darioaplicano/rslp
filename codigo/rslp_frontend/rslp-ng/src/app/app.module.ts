@@ -32,10 +32,13 @@ import { ResenaComponent } from './resena/resena.component';
 import { MatSnackBarModule } from '@angular/material';
 import { AnadirLibrosComponent} from './anadir-libros/anadir-libros.component';
 import { AnadirPeliculasComponent} from './anadir-peliculas/anadir-peliculas.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {MatDialogModule} from '@angular/material/dialog';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +56,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     ResenaComponent,
     AnadirPeliculasComponent,
     AnadirLibrosComponent,
+    BusquedaComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +79,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatDialogModule,
     MatSnackBarModule,
     FormsModule,
+    MatTabsModule,
+    MatCheckboxModule,
     NgbModule
   ],
   providers: [DataService],

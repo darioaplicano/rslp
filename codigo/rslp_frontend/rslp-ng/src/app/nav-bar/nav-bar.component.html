@@ -14,14 +14,15 @@
           <mat-icon>book</mat-icon>
           Añadir Libro
         </button>
-      </div>
-      
-      <!-- barra de búsqueda -->
-     
-          
-            
+      </div>          
 
       <span class="filling"></span>
+
+      <input class="form-control" type="search" placeholder="Búsqueda contenido/usuarios" [(ngModel)]="query"/>
+      <button mat-button [routerLink]="[ '/busqueda', query]">
+        <mat-icon>search</mat-icon>
+      </button>
+
       <div class="second-set" *ngIf="user">
 
       <button mat-button [routerLink]="[ '/perfil', user.nickname]">

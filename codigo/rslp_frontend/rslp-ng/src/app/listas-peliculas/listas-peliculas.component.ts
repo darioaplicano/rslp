@@ -47,12 +47,12 @@ export class ListasPeliculasComponent implements OnInit {
   refresh(){
     this.seenList = this.orSeenList;
     this.toseeList = this.orToseeList;    
-    this.genreList = this.seenList.map(el=>el.contenido.gender.split(",")).concat(this.toseeList.map(el=>el.contenido.gender.split(","))).reduce((acc, val) => acc.concat(val), []).filter(function(item, i, ar){ return ar.indexOf(item) === i; })
+    this.genreList = this.seenList.map(el=>el.contenido.gender.split(",").map(x=>x.trim())).concat(this.toseeList.map(el=>el.contenido.gender.split(",").map(x=>x.trim()))).reduce((acc, val) => acc.concat(val), []).filter(function(item, i, ar){ return ar.indexOf(item) === i; })
   }
 
   hasSubArray(master, sub) {
-    return sub.every((i => v => i = master.indexOf(v, i) + 1)(0));
-  }
+    return sub.every((v)=>master.includes(v));
+  } 
 
   filter(){
     this.refresh();
@@ -60,17 +60,17 @@ export class ListasPeliculasComponent implements OnInit {
     this.seenList = this.seenList.filter(m=>
       m.contenido.titule.toLowerCase().includes(this.title.toLowerCase()) &&
       m.contenido.authorDirector.toLowerCase().includes(this.director.toLowerCase()) &&
-      (this.genre.length==0 || this.hasSubArray(m.contenido.gender.split(","),this.genre)) &&
+      (this.genre.length==0 || this.hasSubArray(m.contenido.gender.split(",").map(x=>x.trim()),this.genre)) &&
       (!this.recomended || m.recomienda)
     )
 
     this.toseeList = this.toseeList.filter(m=>
       m.contenido.titule.toLowerCase().includes(this.title.toLowerCase()) &&
       m.contenido.authorDirector.toLowerCase().includes(this.director.toLowerCase()) &&
-      (this.genre.length==0 || this.hasSubArray(m.contenido.gender.split(","),this.genre)) &&
+      (this.genre.length==0 || this.hasSubArray(m.contenido.gender.split(",").map(x=>x.trim()),this.genre)) &&
       !this.recomended
     )
 
-    this.genreList = this.seenList.map(el=>el.contenido.gender.split(",")).concat(this.toseeList.map(el=>el.contenido.gender.split(","))).reduce((acc, val) => acc.concat(val), []).filter(function(item, i, ar){ return ar.indexOf(item) === i; });
+    this.genreList = this.seenList.map(el=>el.contenido.gender.split(",").map(x=>x.trim())).concat(this.toseeList.map(el=>el.contenido.gender.split(",").map(x=>x.trim()))).reduce((acc, val) => acc.concat(val), []).filter(function(item, i, ar){ return ar.indexOf(item) === i; });
   }
 }
