@@ -2,6 +2,9 @@
 .thumbnail {
   padding:0px;
 }
+.enlace {
+  cursor: pointer;
+}
 .panel {
 position:relative;
 }

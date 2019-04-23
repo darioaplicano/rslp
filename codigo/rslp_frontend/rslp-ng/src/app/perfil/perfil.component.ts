@@ -41,13 +41,13 @@ export class PerfilComponent implements OnInit {
   followed = false;
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem("currentUser"));
+    this.nickname = this.route.snapshot.paramMap.get("nickname");
     this.begin();
   }
 
   begin(){
-    this.user = JSON.parse(localStorage.getItem("currentUser"));
-    var userPerfil = this.route.snapshot.paramMap.get("nickname");
-    this.dataService.getUsuario(userPerfil).subscribe((data:{}) => {
+    this.dataService.getUsuario(this.nickname).subscribe((data:{}) => {
       this.userPerfil = data[0];
 
       /* Verificar si el usuario del perfil es el mismo que ha iniciado sesión */
@@ -66,7 +66,7 @@ export class PerfilComponent implements OnInit {
       });
 
       /* Encontrar la lista de los seguidos */
-      this.dataService.getSeguidos(this.user).subscribe((data: []) => {
+      this.dataService.getSeguidos(this.userPerfil).subscribe((data: []) => {
         this.seguidos = data;
       });
     });
@@ -103,6 +103,7 @@ export class PerfilComponent implements OnInit {
   follow(){
     if(this.followed){
       this.dataService.deleteSeguidor(this.user._id, this.userPerfil._id).subscribe((data:{})=>{
+        this.followed = false;
         this.begin();
       });
     }else{
@@ -115,5 +116,11 @@ export class PerfilComponent implements OnInit {
     }
   }
 
+  recharge(nickname: string){
+    this.nickname = nickname;
+    this.followed = false;
+    this.begin();
+    this.router.navigate(['perfil/'+nickname]);
+  }
 }
 

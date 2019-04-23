@@ -69,7 +69,7 @@
     <div class="col-sm-8">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <strong>{{element.usuario.nickname}}</strong> <span class="text-muted"> valoración {{element.valoracion}}/5</span>
+          <strong class="enlace" [routerLink]="[ '/perfil', element.usuario.nickname]">{{element.usuario.nickname}}</strong> <span class="text-muted"> valoración {{element.valoracion}}/5</span>
         </div>
         <div class="panel-body bg-secondary text-white">
           {{element.comentario}}

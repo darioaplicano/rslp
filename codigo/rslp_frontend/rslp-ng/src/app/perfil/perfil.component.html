@@ -17,15 +17,17 @@
             <button mat-raised-button color="primary" *ngIf="validator" [routerLink]="[ '/listalibros' ]">Lista de libros</button>
         </div>
         <div class="follower-followed">
+            <!-- [routerLink]="[ '/perfil', element.seguidor.nickname]"  -->
           <div *ngIf="seeFollowers">
               <h1 class="section-title" class="mat-h1">Seguidores</h1>
-              <div class="contenido" [routerLink]="[ '/perfil', element.seguidor.nickname]" *ngFor="let element of seguidores">
+              <div class="contenido" (click) = "recharge(element.seguidor.nickname)" *ngFor="let element of seguidores">
                   {{element.seguidor.nickname}}
                 </div>
           </div>
+          <!-- [routerLink]="[ '/perfil', element.seguido.nickname]" -->
           <div *ngIf="seeFollowed">
               <h1 class="section-title" class="mat-h1">Seguidos</h1>
-              <div class="contenido" [routerLink]="[ '/perfil', element.seguido.nickname]" *ngFor="let element of seguidos">
+              <div class="contenido" (click) = "recharge(element.seguido.nickname)"  *ngFor="let element of seguidos">
                   {{element.seguido.nickname}}
               </div>
           </div>
