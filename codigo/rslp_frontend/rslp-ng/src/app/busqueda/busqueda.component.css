@@ -1,0 +1,101 @@
+.bar {
+    position:fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 100;
+}
+
+.content {
+    margin-top: 130px;
+    width: 80%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+}
+
+
+#sidebar{
+    width: 250px;
+    float: left;
+    height:100%;
+}
+
+#main{
+    width: 70%;
+    margin-left: 350px;
+}
+
+#main > div {
+    padding-top: 20px;
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.wrap{
+    position:fixed;
+}
+
+.form-element {
+    display: block;
+}
+
+.section-title {
+    text-align: center;
+}
+
+
+.moviepic{
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+}
+
+mat-card-content{
+    position:relative;
+    width: 100px;
+    height: 150px;
+}
+
+mat-card-content div {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: black;
+    color: white;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: visibility 0s, opacity 0.5s linear; 
+    transition: visibility 0s, opacity 0.5s linear;
+    height: 150px;
+    width: 100px;
+    word-wrap: break-word;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+mat-card-content .recomended{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: -10px;
+}
+
+mat-card-content:hover div{
+    visibility: visible;
+    opacity: 0.7; 
+}
+
+.emptymsg {
+    color: gray;
+    padding-left: 10px;
+}
+
+mat-card {
+    cursor: pointer;
+}

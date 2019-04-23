@@ -12,24 +12,26 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { ResenaComponent } from './resena/resena.component';
 import { AnadirPeliculasComponent} from './anadir-peliculas/anadir-peliculas.component';
 import { AnadirLibrosComponent} from './anadir-libros/anadir-libros.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 
 const routes: Routes = [
   { path: 'login', component:LoginComponent },
-  { path: 'home', component:MainComponent, canActivate:[AuthGuardService] },
+  { path: 'home', component:MainComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always' },
   { path: 'registro', component:RegistroComponent },
-  { path: 'config', component:UserconfigComponent, canActivate:[AuthGuardService] },
-  { path: 'listapelis', component:ListasPeliculasComponent, canActivate:[AuthGuardService] },
-  { path: 'listalibros', component:ListasLibrosComponent, canActivate:[AuthGuardService] },
-  { path: 'perfil/:nickname', component:PerfilComponent, canActivate:[AuthGuardService] },
-  { path: 'resena/:idcontenido', component:ResenaComponent, canActivate:[AuthGuardService] },
+  { path: 'config', component:UserconfigComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always' },
+  { path: 'listapelis', component:ListasPeliculasComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always' },
+  { path: 'listalibros', component:ListasLibrosComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always'  },
+  { path: 'perfil/:nickname', component:PerfilComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always'  },
+  { path: 'resena/:idcontenido', component:ResenaComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always' },
 
-  { path: '', component:MainComponent, canActivate:[AuthGuardService] },
-  { path: 'anadir-libros', component:AnadirLibrosComponent, canActivate:[AuthGuardService] },
-  { path: 'anadir-peliculas', component:AnadirPeliculasComponent, canActivate:[AuthGuardService] },
+  { path: '', component:MainComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always'  },
+  { path: 'anadir-libros', component:AnadirLibrosComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always'  },
+  { path: 'anadir-peliculas', component:AnadirPeliculasComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always'  },
+  { path: 'busqueda/:query', component:BusquedaComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always'  },
 ]
 
 @NgModule({
   exports: [ RouterModule ],
-  imports: [ RouterModule.forRoot(routes) ]
+  imports: [ RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'}) ]
 })
 export class AppRoutingModule {}
