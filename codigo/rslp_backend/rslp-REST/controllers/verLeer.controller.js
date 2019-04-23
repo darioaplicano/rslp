@@ -137,3 +137,22 @@ exports.delete = (req, res) => {
         });
     });
 };
+
+//Delete All:
+// Delete verLeers with the given id
+exports.deleteT = (req, res) => {
+    // Delete the verLeers
+    verLeer.findOneAndDelete({contenido:req.params.contenido})
+    .then(verL => {
+        if(!verL) {
+            return res.status(404).send({
+                message: "verLeers no encontrado por id " + req.params.contenido
+            });
+        }
+        res.send({"message": "verLeers eliminado con éxito"});
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while deleting verLeer."
+        });
+    });
+};

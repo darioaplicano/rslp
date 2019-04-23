@@ -170,7 +170,7 @@ exports.deleteT = (req, res) => {
     .then(comment => {
         if(!comment) {
             return res.status(404).send({
-                message: "Comment no encontrado por id " +req.params.contenid
+                message: "Comment no encontrado por id " +req.params.contenid+ "esto"
             });
         }
         res.send({"message": "Comments eliminados con éxito"});
