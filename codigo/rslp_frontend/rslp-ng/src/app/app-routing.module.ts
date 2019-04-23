@@ -22,10 +22,7 @@ const routes: Routes = [
   { path: 'listalibros', component:ListasLibrosComponent, canActivate:[AuthGuardService] },
   { path: 'perfil/:nickname', component:PerfilComponent, canActivate:[AuthGuardService] },
   { path: 'resena/:idcontenido', component:ResenaComponent, canActivate:[AuthGuardService] },
-<<<<<<< HEAD
-  
-=======
->>>>>>> 6825275f3807619b93e95dd9581b05176f80700e
+
   { path: '', component:MainComponent, canActivate:[AuthGuardService] },
   { path: 'anadir-libros', component:AnadirLibrosComponent, canActivate:[AuthGuardService] },
   { path: 'anadir-peliculas', component:AnadirPeliculasComponent, canActivate:[AuthGuardService] },
