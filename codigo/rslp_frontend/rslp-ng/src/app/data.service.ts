@@ -25,8 +25,8 @@ export class DataService {
         }  
     }
 
-    public getUsuarios(): Observable<Usuario> {
-      return this.http.get<Usuario>(this.actionUrl+"/usuario")
+    public getUsuarios(){
+      return this.http.get<Array<Usuario>>(this.actionUrl+"/usuario")
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -93,6 +93,14 @@ export class DataService {
   // Ver leer
   public getListaVerLeer(usuario: Usuario) {
     return this.http.get<Array<VerLeer>>(this.actionUrl+"/verLeer/"+usuario._id+"/contenidos")
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  public getContenido(){
+    return this.http.get<Array<Contenido>>(this.actionUrl+"/contenido")
     .pipe(
       retry(1),
       catchError(this.handleError)
