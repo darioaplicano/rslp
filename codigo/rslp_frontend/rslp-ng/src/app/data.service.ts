@@ -203,6 +203,46 @@ export class DataService {
       catchError(this.handleError)
     )
   }
+  
+  public deleteTComentarios(eliminar: string) {
+    return this.http.delete<Resena>(this.actionUrl+"/comentar/"+eliminar+"/tcomentarios/t")
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  public deleteTVistoLeido(eliminar: string) {
+    return this.http.delete<VistoLeido>(this.actionUrl+"/vistoLeido/"+eliminar+"/tvistoleidos")
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  public deleteTVerLeer(eliminar: string) {
+    return this.http.delete<VerLeer>(this.actionUrl+"/verLeer/"+eliminar+"/tverleers")
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  public getTVerLeer(contenido: string) {
+    return this.http.get<Array<VerLeer>>(this.actionUrl+"/verLeer/"+contenido+"/usuarios/t")
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  public getTVistoLeido(contenido: string) {
+    return this.http.get<Array<VistoLeido>>(this.actionUrl+"/vistoLeido/"+contenido+"/usuarios/t")
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
 
 
   //Termina los dataServices Alex

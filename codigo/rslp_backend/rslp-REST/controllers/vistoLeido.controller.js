@@ -139,3 +139,22 @@ exports.delete = (req, res) => {
         });
     });
 };
+
+//Delete All:
+// Delete vistoLeidos with the given id
+exports.deleteT = (req, res) => {
+    // Delete the vistoLeido
+    vistoLeido.findOneAndDelete({contenido:req.params.contenido})
+    .then(verL => {
+        if(!verL) {
+            return res.status(404).send({
+                message: "vistoLeidos no encontrado por id " + req.params.contenido
+            });
+        }
+        res.send({"message": "vistoLeidos eliminado con éxito"});
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while deleting vistoLeido."
+        });
+    });
+};
