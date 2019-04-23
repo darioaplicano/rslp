@@ -10,8 +10,6 @@ import { ListasPeliculasComponent } from './listas-peliculas/listas-peliculas.co
 import { ListasLibrosComponent } from './listas-libros/listas-libros.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { ResenaComponent } from './resena/resena.component';
-import { AnadirPeliculasComponent} from './anadir-peliculas/anadir-peliculas.component';
-import { AnadirLibrosComponent} from './anadir-libros/anadir-libros.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { ContentConfigComponent } from './content-config/content-config.component';
 import { AgregarContenidoComponent } from './agregar-contenido/agregar-contenido.component';
@@ -28,8 +26,6 @@ const routes: Routes = [
   { path: 'agregar-contenido', component:AgregarContenidoComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always' },
 
   { path: '', component:MainComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always'  },
-  { path: 'anadir-libros', component:AnadirLibrosComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always'  },
-  { path: 'anadir-peliculas', component:AnadirPeliculasComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always'  },
   { path: 'busqueda/:query', component:BusquedaComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always'  },
   { path: 'contentConfig/:idcontenido', component:ContentConfigComponent, canActivate:[AuthGuardService], runGuardsAndResolvers:'always' },
 ]
