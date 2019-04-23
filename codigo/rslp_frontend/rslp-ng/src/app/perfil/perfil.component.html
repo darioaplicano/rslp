@@ -22,7 +22,7 @@
       <h2 *ngIf="seenList.length==0" class="emptymsg mat-h2">Lista vacía</h2>
       <div class="list">
         <mat-card *ngFor="let element of seenList">
-          <mat-card-content [routerLink]="[ '/resena', element.contenido._id, {'r': element.recomienda, 'v':true, 'l':'visto'}]">
+          <mat-card-content [routerLink]="[ '/resena', element.contenido._id]">
               <img class="moviepic" mat-card-md-image src="{{element.contenido.image}}" />
               <div>
                 <h4 class="mat-h4 movietitle">{{element.contenido.titule}}</h4>
@@ -38,7 +38,7 @@
         <h2 *ngIf="toseeList.length==0" class="emptymsg mat-h2">Lista vacía</h2>
         <div class="list">
           <mat-card *ngFor="let element of toseeList">
-            <mat-card-content [routerLink]="[ '/resena', element.contenido._id, {'r':false, 'v':false, 'l':'porver'}]">
+            <mat-card-content [routerLink]="[ '/resena', element.contenido._id]">
                 <img class="moviepic" mat-card-md-image src="{{element.contenido.image}}" />
                 <div><h4 class="mat-h4 movietitle">{{element.contenido.titule}}</h4></div>
             </mat-card-content>

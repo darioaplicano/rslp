@@ -30,6 +30,8 @@ import { MatCardModule } from '@angular/material/card';
 import { PerfilComponent } from './perfil/perfil.component';
 import { ResenaComponent } from './resena/resena.component';
 import { MatSnackBarModule } from '@angular/material';
+import { AnadirLibrosComponent} from './anadir-libros/anadir-libros.component';
+import { AnadirPeliculasComponent} from './anadir-peliculas/anadir-peliculas.component';
 
 
 import {MatDialogModule} from '@angular/material/dialog';
