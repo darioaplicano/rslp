@@ -33,6 +33,7 @@ import { MatSnackBarModule } from '@angular/material';
 import { AnadirLibrosComponent} from './anadir-libros/anadir-libros.component';
 import { AnadirPeliculasComponent} from './anadir-peliculas/anadir-peliculas.component';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {MatDialogModule} from '@angular/material/dialog';
 
@@ -73,7 +74,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatCardModule,
     MatDialogModule,
     MatSnackBarModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent,DialogoPasswd,DialogoDelete]
