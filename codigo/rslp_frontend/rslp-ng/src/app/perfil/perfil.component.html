@@ -8,7 +8,9 @@
                 <div class="name">{{userPerfil.nickname}}</div>
                 <div class="counter contenido" (click) = "activedFollowers()">{{seguidores.length}} seguidores</div>
                 <div class="counter contenido" (click) = "activedFollowed()">{{seguidos.length}} seguidos</div>
-            </div>
+                <button type="button" *ngIf="followed" class="btn btn-primary" (click)="follow()">Siguiendo</button>
+                <button type="button" *ngIf="!followed" class="btn btn-light" (click)="follow()">Seguir</button>
+              </div>
         </div>
         <div class="lists">
             <button mat-raised-button color="primary" *ngIf="validator" [routerLink]="[ '/listapelis' ]">Lista de películas</button>
