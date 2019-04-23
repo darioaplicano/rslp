@@ -30,6 +30,7 @@ import { MatCardModule } from '@angular/material/card';
 import { PerfilComponent } from './perfil/perfil.component';
 import { ResenaComponent } from './resena/resena.component';
 import { MatSnackBarModule } from '@angular/material';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {MatDialogModule} from '@angular/material/dialog';
 
@@ -68,7 +69,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatCardModule,
     MatDialogModule,
     MatSnackBarModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent,DialogoPasswd,DialogoDelete]

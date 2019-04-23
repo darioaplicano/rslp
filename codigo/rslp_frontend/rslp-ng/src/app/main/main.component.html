@@ -7,12 +7,27 @@
                 <img class="userpic" src="{{user.imagen}}">
                 <div>
                     <div class="name">{{user.nickname}}</div>
-                    <div class="counter">{{numFollowers}} seguidores</div>
+                    <div class="counter contenido" (click) = "activedFollowers()">{{numFollowers}} seguidores</div>
+                    <div class="counter contenido" (click) = "activedFollowed()">{{numFollowed}} seguidos</div>
                 </div>
             </div>
             <div class="lists">
                 <button mat-raised-button color="primary" [routerLink]="[ '/listapelis' ]">Lista de películas</button>
                 <button mat-raised-button color="primary" [routerLink]="[ '/listalibros' ]">Lista de libros</button>
+            </div>
+            <div class="follower-followed">
+                <div *ngIf="seeFollowers">
+                    <h1 class="section-title" class="mat-h1">Seguidores</h1>
+                    <div class="contenido" [routerLink]="[ '/perfil', element.seguidor.nickname]" *ngFor="let element of seguidores">
+                        {{element.seguidor.nickname}}
+                    </div>
+                </div>
+                <div *ngIf="seeFollowed">
+                    <h1 class="section-title" class="mat-h1">Seguidos</h1>
+                    <div class="contenido" [routerLink]="[ '/perfil', element.seguido.nickname]" *ngFor="let element of seguidos">
+                        {{element.seguido.nickname}}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
