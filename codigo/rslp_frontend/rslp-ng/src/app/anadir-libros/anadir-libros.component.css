@@ -5,7 +5,8 @@
   
   .addbox > * {
     width: 100%;
-.addbox {
+
+  .addbox {
     display: flex;
     flex-direction: column;
   }
