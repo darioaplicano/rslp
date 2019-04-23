@@ -46,8 +46,10 @@
 
 
       <div>
-      <button mat-raised-button color="primary" class="form-element"  type="submit" [disabled]="!Contenido.form.valid">Confirmar</button>
-     </button>
+    
+
+     <button mat-button color="primary" class="form-element" routerLink="/anadir-libros">Confirmar</button>
+
 
      <ul *ngFor="let contenido of contenidos">
         <li>{{contenido._id}}</li>
@@ -60,6 +62,9 @@
         <li>{{contenido.type}}</li>
       </ul>
     </div>
+  
+
+
   
 
 
