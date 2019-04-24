@@ -74,6 +74,7 @@ export class ResenaComponent implements OnInit {
         this.getResena();
         this.newResena.contenido = this.contenido;
         this.newResena.usuario = usuario;
+        this.newResena.valoracion = "0";
         this.newVistoLeido.contenido = this.contenido
         this.newVistoLeido.usuario = usuario;
         this.newVistoLeido.recomienda = false;
@@ -107,8 +108,6 @@ export class ResenaComponent implements OnInit {
 
   onChangeObja(newObj) {
     alert(this.selectedDeviceObj == newObj);
-    /* this.selectedDeviceObj = newObj; */
-    // ... do other stuff here ...
   }
 
   onChangeObj(listado){
