@@ -23,11 +23,14 @@ export class BusquedaComponent implements OnInit {
   movie:boolean = true;
   book:boolean = true;
 
+  queryString = "";
+
   constructor(public dataservice:DataService, public route:ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe(params=>{  
-      this.filterByQuery(params.query);      
+      this.queryString = params.query;
+      this.filterByQuery(this.queryString);      
     })
   }
 
