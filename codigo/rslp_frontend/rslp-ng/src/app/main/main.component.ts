@@ -38,8 +38,6 @@ export class MainComponent implements OnInit {
     this.dataService.getSeguidores(this.user).subscribe((data: []) => {
       this.numFollowers = data.length;
       this.seguidores = data;
-      console.log("ENCONTRADOOO");
-      console.log(data);
     })
 
     this.loadActivity()

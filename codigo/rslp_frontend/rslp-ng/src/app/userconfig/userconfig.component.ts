@@ -2,10 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Usuario } from '../modelos/usuario';
 import { DataService } from '../data.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DefaultRouteReuseStrategy } from '@angular/router/src/route_reuse_strategy';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-userconfig',
@@ -87,6 +85,7 @@ export interface DialogData {
 }
 
 @Component({
+  selector: 'app-dialogo-passwd',
   templateUrl: 'dialogo-passwd.html',
   styleUrls: ['dialogo-passwd.css']
 })
@@ -104,6 +103,7 @@ export class DialogoPasswd {
 }
 
 @Component({
+  selector: 'app-dialogo-delete',
   templateUrl: 'dialogo-delete.html',
   styleUrls: ['dialogo-passwd.css']
 })
