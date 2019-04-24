@@ -3,7 +3,6 @@ import { Contenido } from '../modelos/contenido';
 import { DataService } from '../data.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { DialogoPasswd, DialogData } from '../userconfig/userconfig.component';
 import { Resena } from '../modelos/resena';
 import { VerLeer } from '../modelos/verLeer';
 
@@ -72,21 +71,21 @@ export class ContentConfigComponent implements OnInit {
   }
   deleteContent(){
     this.dataservice.getResena(this.model._id).subscribe((d:Array<Resena>)=>{
-      this.ListResena = d.length; console.log(d.length);
+      this.ListResena = d.length;
       for (var i=0; i<d.length; i++) {
         this.dataservice.deleteTComentarios(this.model._id).subscribe((data:{})=>{});
       }
     });
 
     this.dataservice.getTVerLeer(this.model._id).subscribe((e:Array<VerLeer>)=>{
-      this.ListVerLeer = e.length; console.log(e.length);
+      this.ListVerLeer = e.length;
       for (var i=0; i<e.length; i++) {
         this.dataservice.deleteTVerLeer(this.model._id).subscribe((data:{})=>{});
       }
     });
 
     this.dataservice.getTVistoLeido(this.model._id).subscribe((f:Array<VerLeer>)=>{
-      this.ListVistoLeido = f.length; console.log(f.length);
+      this.ListVistoLeido = f.length;
       for (var i=0; i<f.length; i++) {
         this.dataservice.deleteTVistoLeido(this.model._id).subscribe((data:{})=>{});
       }
@@ -100,6 +99,7 @@ export class ContentConfigComponent implements OnInit {
 }
 
 @Component({
+  selector: 'app-dialogo-confirmate',
   templateUrl: 'dialogo-confirmate.html',
   styleUrls: ['dialogo-confirmate.css']
 })
@@ -116,6 +116,7 @@ export class DialogoConfirmate {
 }
 
 @Component({
+  selector: 'app-dialogo-contentdelete',
   templateUrl: 'dialogo-contentdelete.html',
   styleUrls: ['dialogo-confirmate.css']
 })

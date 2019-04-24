@@ -86,6 +86,7 @@ import { AgregarContenidoComponent } from './agregar-contenido/agregar-contenido
     NgbModule
   ],
   providers: [DataService],
-  bootstrap: [AppComponent,DialogoPasswd,DialogoDelete, DialogoConfirmate, DialogoContentDelete]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogoConfirmate, DialogoContentDelete, DialogoDelete, DialogoPasswd]
 })
 export class AppModule { }
