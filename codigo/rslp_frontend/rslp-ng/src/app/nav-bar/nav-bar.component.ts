@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent {
 
+  query = "";
   user = null;
   constructor(public router: Router){
     this.user = JSON.parse(localStorage.getItem("currentUser"));
